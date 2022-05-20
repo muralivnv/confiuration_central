@@ -1,0 +1,707 @@
+{
+  // Common editor settings
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "window.menuBarVisibility": "hidden",
+  "window.enableMenuBarMnemonics": false,
+  "editor.suggestSelection": "first",
+  "extensions.ignoreRecommendations": true,
+  "window.titleSeparator": " ~ ",
+  "window.title": "${dirty}${separator}${rootName}",
+  "workbench.sideBar.location": "right",
+  "workbench.editor.untitled.hint": "hidden",
+  "editor.guides.bracketPairs": false,
+  "editor.guides.highlightActiveIndentation": true,
+  // "files.trimTrailingWhitespace": true,
+
+  // terminal
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "args": ["-NoProfile"]
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Xonsh": {
+      "path": [
+        "xonsh"
+      ]
+    }
+  },
+
+  "terminal.integrated.defaultProfile.windows": "Xonsh",
+  "terminal.integrated.automationProfile.windows": {
+    "path": "${env:windir}\\System32\\cmd.exe",
+  },
+
+  // language specific tool paths, settings
+  // C/C++
+  "C_Cpp.errorSquiggles": "Disabled",
+  "C_Cpp.enhancedColorization": "Enabled",
+  "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake",
+
+  // Python
+  "python.pythonPath": "C:\\Anaconda3\\python.exe",
+  "python.languageServer": "Jedi",
+  "jupyter.sendSelectionToInteractiveWindow": false,
+  "jupyter.askForKernelRestart": false,
+  "jupyter.runStartupCommands": [
+      "%config IPCompleter.use_jedi = False"
+  ],
+  "jupyter.interactiveWindowMode": "perFile",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+
+  // Git
+  "git.enabled": false,
+  "git.autofetch": false,
+  "git.path": null,
+
+  // Debugging
+  "debug.showBreakpointsInOverviewRuler": true,
+
+  // Performance Improvements
+  "telemetry.telemetryLevel": "off",
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "emmet.excludeLanguages": [
+    "markdown",
+    "python",
+    "c",
+    "cpp"
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/CMakeFiles": true
+  },
+  "files.watcherExclude": {
+    "**/.git/**": true,
+    "**/node_modules/**": true,
+    "**/CMakeFiles/**":true
+  },
+  "files.exclude": {
+    "**/*.obj": true,
+    "**/*.pdb": true,
+    "**/*.ilk": true,
+    "**/*.dll": true
+  },
+
+  // Extensions ------------
+
+  // Theme customizations
+  "workbench.colorCustomizations": {
+    // https://code.visualstudio.com/api/references/theme-color
+    "[Seti Black]":
+    {
+      "sideBar.background":               "#242129",
+      "sideBarSectionHeader.border":      "#3b2c50",
+      "editorGroupHeader.tabsBackground": "#1f1f20",
+      "editorGroupHeader.tabsBorder":     "#2c2c2c",
+      "editor.background":                "#1f1f20",
+      "editor.lineHighlightBorder":       "#2c2a2a",
+      "editor.lineHighlightBackground":   "#131212",
+      "editorBracketMatch.background":    "#33312e10",
+      "editorBracketMatch.border":        "#ffffff8f",
+      "editor.hoverHighlightBackground":  "#2360993a",
+      "editorLineNumber.foreground":      "#939197",
+      "editorLineNumber.activeForeground":"#db802a",
+      "tab.border":                       "#3b3b3b",
+      "tab.activeBackground":             "#313131",
+      "tab.activeBorder":                 "#ec8f24",
+      "tab.inactiveBackground":           "#242424",
+      "tab.inactiveForeground":           "#cac7c7",
+      "menu.background":                  "#211e24",
+      "editor.selectionBackground":       "#454546a4",
+      "editor.selectionHighlightBorder":  "#bebebe54",
+      "statusBar.background":             "#252327",
+      "statusBar.border":                 "#3f3349d7",
+      "statusBar.foreground":             "#c0c0c0",
+      "titleBar.activeBackground":        "#2b2a2a",
+      "titleBar.border":                  "#3f3349d7",
+      "sideBar.border":                   "#080808"
+    },
+
+    "[Gatito Theme]":
+    {
+      "editor.background":                            "#1f2122",
+      "editorGutter.background":                      "#1f2122",
+      "editor.selectionBackground":                   "#454546a4",
+      "editor.selectionHighlightBorder":              "#bebebe54",
+      "editorSuggestWidget.highlightForeground":      "#e4767b",
+      "editorSuggestWidget.focusHighlightForeground": "#e9bf6c",
+      "editorSuggestWidget.selectedBackground":       "#27555ee3",
+      "editorLineNumber.activeForeground":            "#a8a8a8",
+      "editorGroupHeader.tabsBackground":             "#1f2122",
+      "terminal.background":                          "#1f2122",
+      "panel.background":                             "#1f2122",
+      "breadcrumb.background":                        "#1f2122",
+      "breadcrumb.foreground":                        "#a8a8a8",
+      "statusBar.background":                         "#1f2122",
+      "statusBar.foreground":                         "#a8a8a8",
+      "statusBar.border":                             "#27555ee3",
+      "titleBar.activeBackground":                    "#1f2122",
+      "titleBar.activeForeground":                    "#a8a8a8",
+      "titleBar.border":                              "#27555ee3",
+      "menu.background":                              "#191f22",
+      "menu.selectionBackground":                     "#27555ee3",
+      "selection.background":                         "#27555ee3",
+      "list.activeSelectionBackground":               "#27555ee3",
+      "list.focusHighlightForeground":                "#e9bf6c",
+      "list.highlightForeground":                     "#e4767b",
+      "listFilterWidget.outline":                     "#e9bf6c",
+      "list.filterMatchBackground":                   "#fac86370",
+      "sideBar.background":                           "#191f22",
+      "sideBarSectionHeader.background":              "#27555ee3",
+      "sideBar.border":                               "#27555ee3",
+      "quickInput.background":                        "#191f22",
+      "quickInputList.focusBackground":               "#27555ee3",
+      "tab.activeBackground":                         "#1f2122",
+      "tab.activeBorder":                             "#a8a8a8",
+      "tab.inactiveBackground":                       "#1f2122",
+      "tab.inactiveForeground":                       "#a8a8a8"
+    }
+  },
+
+  "editor.tokenColorCustomizations": {
+    "[Seti Black]":
+      {
+        "textMateRules": [
+        {
+          "scope": "variable.parameter",
+          "settings": {
+            "fontStyle": "",
+            "foreground":"#e7983e" //"#d19438"
+            }
+        },
+        {
+          "scope": [
+            "punctuation.separator.pointer-access.cpp"
+          ],
+          "settings": {
+            "foreground": "#d7d7d7ff"
+          }
+        },
+        {
+          "scope": [
+            "keyword.control.return"
+          ],
+          "settings": {
+            "fontStyle": "bold",
+            "foreground": "#fd2868"
+          }
+        },
+        {
+          "scope": "keyword.control",
+          "settings": {
+            "foreground": "#4b93d6"
+          }
+        },
+        {
+          "scope": [
+            "keyword.control.directive",
+            "keyword.other.typedef",
+            "keyword.control.import",
+            "entity.name.function.decorator.python"
+          ],
+          "settings": {
+            "foreground": "#fd2868"//"#e6008e"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator",
+            "keyword.operator.logical",
+            "keyword.operator.assignment"
+          ],
+          "settings": {
+            "foreground": "#fd2868"
+          }
+        },
+        {
+          "scope": "storage.modifier.reference",
+          "settings": {
+            "foreground": "#b1b1b1"
+          }
+        },
+        {
+          "scope": [
+            "entity.name.function",
+            "entity.name.class",
+            "entity.other.inherited-class",
+            "support.function",
+            "support.class"],
+          "settings": {
+            "fontStyle": "",
+            "foreground": "#7dd443"
+          }
+        },
+        {
+          "scope": [
+            "storage.type",
+            "entity.name.type"
+          ],
+          "settings": {
+            "fontStyle": "",
+            "foreground": "#6CA9E1"//"#0fa6cc"
+          }
+        },
+        {
+          "scope": [
+            "storage.modifier.specifier.const",
+            "storage.type.struct",
+            "storage.type.class"
+            ],
+          "settings": {
+            "foreground": "#0de6b7"
+          }
+        },
+        {
+          "scope": [
+            "string.quoted.double",
+            "string.quoted.single"
+          ],
+          "settings": {
+            "foreground": "#ecea70"
+          }
+        },
+        {
+          "scope":[
+            "storage.type.class.doxygen"
+          ],
+          "settings": {
+            "foreground": "#999797",
+            "fontStyle": "bold"
+          }
+        },
+
+        // Markdown Specific
+        {
+          "scope":[
+            "markup.heading"
+          ],
+          "settings": {
+            "foreground": "#6398c4",
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope":[
+            "string.other.link.title.markdown"
+          ],
+          "settings": {
+            "foreground": "#fdc959",
+          }
+        },
+        {
+          "scope": [
+            "punctuation.definition.list.begin.markdown",
+            "markup.bold.markdown"
+          ],
+          "settings": {
+            "fontStyle": "bold"
+          }
+        },
+        {
+          "scope":[
+            "markup.italic.markdown"
+          ],
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": [
+            "markup.quote.markdown"
+          ],
+          "settings": {
+            "foreground": "#76eeb2",
+          }
+        }
+      ]
+      },
+
+      "[Gatito Theme]":
+      {
+        "textMateRules": [
+          {
+            "scope": ["comment"],
+            "settings": {
+              "foreground": "#7F7F7F",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": ["variable.other.enummember"],
+            "settings": {
+              "foreground": "#e4767b",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": ["variable.language.this",
+                      "variable.language.special.self"],
+            "settings": {
+              "foreground": "#e4767b",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": ["keyword.other.unit"],
+            "settings": {
+              "foreground": "#58865A",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": ["constant.numeric", "constant.language",
+                      "constant.other"],
+            "settings": {
+              "foreground": "#97BC62FF",
+              "fontStyle": "",
+            }
+          },
+          {
+            "scope": ["entity.name.class", "entity.name.type.class",
+                      "support.type", "support.class"],
+            "settings": {
+              "foreground": "#e9bf6c",
+              "fontStyle": ""
+            }
+          },
+          {
+            "scope": ["punctuation", "meta.function-call.arguments.python"],
+            "settings": {
+              "foreground": "#D4D4D4",
+              "fontStyle": ""
+            }
+          }
+        ]
+      }
+  },
+  "editor.fontFamily": "JetBrains Mono, 'Courier New', monospace",
+  "editor.fontSize": 13.5,
+  "editor.lineHeight": 22,
+  "editor.fontLigatures": false,
+  "debug.console.fontSize": 13.5,
+  "workbench.startupEditor": "none",
+
+  // codereaper extension settings
+  "codereaper.keymap": {
+    "i": {
+      "command": "cursorUp",
+      "args": {}
+    },
+    "I": {
+      "command": "cursorUpSelect",
+      "args": {}
+    },
+    "k": {
+      "command": "cursorDown",
+      "args": {}
+    },
+    "K": {
+      "command": "cursorDownSelect",
+      "args": {}
+    },
+    "u": {
+      "command": "cursorLeft",
+      "args": {}
+    },
+    "U": {
+      "command": "cursorLeftSelect",
+      "args": {}
+    },
+    "o": {
+      "command": "cursorRight",
+      "args": {}
+    },
+    "O": {
+      "command": "cursorRightSelect",
+      "args": {}
+    },
+    "j": {
+      "command": "cursorWordLeft",
+      "args": {}
+    },
+    "J": {
+      "command": "cursorWordLeftSelect",
+      "args": {}
+    },
+    "l": {
+      "command": "cursorWordRight",
+      "args": {}
+    },
+    "L": {
+      "command": "cursorWordRightSelect",
+      "args": {}
+    },
+    ";": {
+      "command": "cursorHome",
+      "args": {}
+    },
+    ":": {
+      "command": "cursorHomeSelect",
+      "args": {}
+    },
+    ",": {
+      "command": "cursorEnd",
+      "args": {}
+    },
+    "<": {
+      "command": "cursorEndSelect",
+      "args": {}
+    },
+    "b": {
+      "command": "editor.action.jumpToBracket",
+      "args": {}
+    },
+    "B": {
+      "command": "editor.action.selectToBracket",
+      "args": {}
+    },
+    "[": {
+      "command": "workbench.action.navigateBack",
+      "args": {}
+    },
+    "]": {
+      "command": "workbench.action.navigateForward",
+      "args": {}
+    },
+    "mi": {
+      "command": "editor.action.moveLinesUpAction",
+      "args": {}
+    },
+    "mk": {
+      "command": "editor.action.moveLinesDownAction",
+      "args": {}
+    },
+    "mo": {
+      "command": "editor.action.moveCarretRightAction",
+      "args": {}
+    },
+    "mu": {
+      "command": "editor.action.moveCarretLeftAction",
+      "args": {}
+    },
+    "dd": {
+      "command": "editor.action.revealDefinition",
+      "args": {}
+    },
+    "dp": {
+      "command": "editor.action.peekDefinition",
+      "args": {}
+    },
+    "dr": {
+      "command": "references-view.findReferences",
+      "args": {}
+    },
+    "-": {
+      "command": "breadcrumbs.toggleToOn",
+      "args": {}
+    },
+    "gt": {
+      "command": "cursorTop",
+      "args": {}
+    },
+    "GT": {
+      "command": "cursorTopSelect",
+      "args": {}
+    },
+    "gb": {
+      "command": "cursorBottom",
+      "args": {}
+    },
+    "GB": {
+      "command": "cursorBottomSelect",
+      "args": {}
+    },
+    "w": {
+      "command": "jumpToHint.jumpByWord",
+      "args": {}
+    },
+    "q": {
+      "command": "jumpToHint.jumpBySearch",
+      "args": {}
+    },
+    "a": {
+      "command": "jumpToHint.jumpByLine",
+      "args": {}
+    },
+    "s(": {
+      "command": "codereaper.selectParenthesis",
+      "args": {}
+    },
+    "s)": {
+      "command": "codereaper.selectParenthesisOuter",
+      "args": {}
+    },
+    "s[": {
+      "command": "codereaper.selectSquareBrackets",
+      "args": {}
+    },
+    "s]": {
+      "command": "codereaper.selectSquareBracketsOuter",
+      "args": {}
+    },
+    "s{": {
+      "command": "codereaper.selectCurlyBrackets",
+      "args": {}
+    },
+    "s}": {
+      "command": "codereaper.selectCurlyBracketsOuter",
+      "args": {}
+    },
+    "s<": {
+      "command": "codereaper.selectAngleBrackets",
+      "args": {}
+    },
+    "s>": {
+      "command": "codereaper.selectAngleBracketsOuter",
+      "args": {}
+    },
+    "s\"": {
+      "command": "codereaper.selectDoubleQuote",
+      "args": {}
+    },
+    "s'": {
+      "command": "codereaper.selectSingleQuote",
+      "args": {}
+    },
+    "s`": {
+      "command": "codereaper.selectBackTick",
+      "args": {}
+    },
+    "s.": {
+      "command": "codereaper.selectInTag",
+      "args": {}
+    },
+    "ss": {
+      "command": "editor.action.smartSelect.shrink",
+      "args": {}
+    },
+    "S": {
+      "command": "editor.action.smartSelect.expand",
+      "args": {}
+    },
+    "sl": {
+      "command": "expandLineSelection",
+      "args": {}
+    },
+    "st": {
+      "command": "codereaper.jumpToTab",
+      "args": {}
+    },
+    "ca": {
+      "command": "editor.action.selectHighlights",
+      "args": {}
+    },
+    "ci": {
+      "command": "editor.action.insertCursorAbove",
+      "args": {}
+    },
+    "ck": {
+      "command": "editor.action.insertCursorBelow",
+      "args": {}
+    },
+    "cc": {
+      "command": "editor.action.addSelectionToNextFindMatch",
+      "args": {}
+    },
+    "cn": {
+      "command": "editor.action.moveSelectionToNextFindMatch",
+      "args": {}
+    },
+    "cp": {
+      "command": "editor.action.moveSelectionToPreviousFindMatch",
+      "args": {}
+    },
+    "t": {
+      "command": "codereaper.quickJumpToTab",
+      "args": {}
+    },
+    "`": {
+      "command": "workbench.action.openPreviousRecentlyUsedEditor",
+      "args": {}
+    },
+    "~": {
+      "command": "workbench.action.openNextRecentlyUsedEditor",
+      "args": {}
+    },
+    "'": {
+      "command": "codereaper.fuzzySearchFiles",
+      "args": {}
+    },
+    "/": {
+      "command": "codereaper.fuzzySearchFileContents",
+      "args": {}
+    },
+    "?": {
+      "command": "codereaper.fuzzySearchTodoContents",
+      "args": {}
+    },
+    "\\": {
+      "command": "workbench.action.splitEditor",
+      "args": {}
+    },
+    "|": {
+      "command": "workbench.action.splitEditorOrthogonal",
+      "args": {}
+    },
+    "\n": {
+      "command": "default:type",
+      "args": {"text": "\n"}
+    },
+    " ": {
+      "command": "default:type",
+      "args": {"text": " "}
+    },
+    "ff": {
+      "command": "editor.fold",
+      "args": {}
+    },
+    "fu": {
+      "command": "editor.unfold",
+      "args": {}
+    },
+    "fa": {
+      "command": "editor.foldAll",
+      "args": {}
+    },
+    "n": {
+      "command": "cursorPageDown",
+      "args": {}
+    },
+    "N": {
+      "command": "cursorPageDownSelect",
+      "args": {}
+    },
+    "p": {
+      "command": "cursorPageUp",
+      "args": {}
+    },
+    "P": {
+      "command": "cursorPageUpSelect",
+      "args": {}
+    }
+  },
+  "codereaper.stickyParentKeys": ["m", "c", "e"],
+  "workbench.colorTheme": "Gatito Theme",
+  "workbench.activityBar.visible": false,
+  "diffEditor.renderSideBySide": false,
+  "workbench.layoutControl.enabled": false
+}

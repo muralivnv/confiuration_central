@@ -1,0 +1,402 @@
+[
+  {
+    "command": "codereaper.toggle",
+    "key": "shift shift",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "codereaper.clearInput",
+    "key": "escape",
+    "when": "editorTextFocus && codereaper.isInNavigationMode"
+  },
+  {
+    "command": "cursorUp",
+    "key": " alt+i",
+    "args": {}
+  },
+  {
+    "key": "alt+i",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "alt+i",
+    "command": "list.focusUp",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "alt+i",
+    "command": "workbench.action.quickOpenNavigatePrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    "command": "cursorUpSelect",
+    "key": " alt+shift+i",
+    "args": {}
+  },
+  {
+    "command": "cursorDown",
+    "key": " alt+k",
+    "args": {}
+  },
+  {
+    "key": "alt+k",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "list.focusDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.quickOpenNavigateNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "command": "cursorDownSelect",
+    "key": " alt+shift+k",
+    "args": {}
+  },
+  {
+    "command": "cursorLeft",
+    "key": " alt+u",
+    "args": {}
+  },
+  {
+    "command": "cursorLeftSelect",
+    "key": " alt+shift+u",
+    "args": {}
+  },
+  {
+    "command": "cursorRight",
+    "key": " alt+o",
+    "args": {}
+  },
+  {
+    "command": "cursorRightSelect",
+    "key": " alt+shift+o",
+    "args": {}
+  },
+  {
+    "command": "cursorWordLeft",
+    "key": " alt+j",
+    "args": {}
+  },
+  {
+    "command": "cursorWordLeftSelect",
+    "key": " alt+shift+j",
+    "args": {}
+  },
+  {
+    "command": "cursorWordRight",
+    "key": " alt+l",
+    "args": {}
+  },
+  {
+    "command": "cursorWordRightSelect",
+    "key": " alt+shift+l",
+    "args": {}
+  },
+  {
+    "command": "cursorHome",
+    "key": " alt+;",
+    "args": {}
+  },
+  {
+    "command": "cursorHomeSelect",
+    "key": " alt+shift+:",
+    "args": {}
+  },
+  {
+    "command": "cursorEnd",
+    "key": " alt+,",
+    "args": {}
+  },
+  {
+    "command": "cursorEndSelect",
+    "key": " alt+shift+,",
+    "args": {}
+  },
+  {
+    "command": "editor.action.jumpToBracket",
+    "key": " alt+b",
+    "args": {}
+  },
+  {
+    "command": "editor.action.selectToBracket",
+    "key": " alt+shift+b",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.navigateBack",
+    "key": " alt+[",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.navigateForward",
+    "key": " alt+]",
+    "args": {}
+  },
+  {
+    "command": "editor.action.moveLinesUpAction",
+    "key": " alt+m alt+i",
+    "args": {}
+  },
+  {
+    "command": "editor.action.moveLinesDownAction",
+    "key": " alt+m alt+k",
+    "args": {}
+  },
+  {
+    "command": "editor.action.moveCarretRightAction",
+    "key": " alt+m alt+o",
+    "args": {}
+  },
+  {
+    "command": "editor.action.moveCarretLeftAction",
+    "key": " alt+m alt+u",
+    "args": {}
+  },
+  {
+    "command": "editor.action.revealDefinition",
+    "key": " alt+d alt+d",
+    "args": {}
+  },
+  {
+    "command": "editor.action.peekDefinition",
+    "key": " alt+d alt+p",
+    "args": {}
+  },
+  {
+    "command": "references-view.findReferences",
+    "key": " alt+d alt+r",
+    "args": {}
+  },
+  {
+    "command": "breadcrumbs.toggleToOn",
+    "key": " alt+-",
+    "args": {}
+  },
+  {
+    "command": "cursorTop",
+    "key": " alt+g alt+t",
+    "args": {}
+  },
+  {
+    "command": "cursorTopSelect",
+    "key": " alt+shift+g alt+shift+t",
+    "args": {}
+  },
+  {
+    "command": "cursorBottom",
+    "key": " alt+g alt+b",
+    "args": {}
+  },
+  {
+    "command": "cursorBottomSelect",
+    "key": " alt+shift+g alt+shift+b",
+    "args": {}
+  },
+  {
+    "command": "jumpToHint.jumpByWord",
+    "key": " alt+g alt+w",
+    "args": {}
+  },
+  {
+    "command": "jumpToHint.jumpBySearch",
+    "key": " alt+g alt+q",
+    "args": {}
+  },
+  {
+    "command": "jumpToHint.jumpByLine",
+    "key": " alt+g alt+l",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectParenthesis",
+    "key": " alt+s alt+(",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectParenthesisOuter",
+    "key": " alt+s alt+)",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectSquareBrackets",
+    "key": " alt+s alt+[",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectSquareBracketsOuter",
+    "key": " alt+s alt+]",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectCurlyBrackets",
+    "key": " alt+s alt+shift+[",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectCurlyBracketsOuter",
+    "key": " alt+s alt+shift+]",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectAngleBrackets",
+    "key": " alt+s alt+shift+,",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectAngleBracketsOuter",
+    "key": " alt+s alt+shift+.",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectDoubleQuote",
+    "key": " alt+s alt+shift+'",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectSingleQuote",
+    "key": " alt+s alt+'",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectBackTick",
+    "key": " alt+s alt+`",
+    "args": {}
+  },
+  {
+    "command": "codereaper.selectInTag",
+    "key": " alt+s alt+.",
+    "args": {}
+  },
+  {
+    "command": "editor.action.smartSelect.expand",
+    "key": " alt+s alt+s",
+    "args": {}
+  },
+  {
+    "command": "editor.action.smartSelect.shrink",
+    "key": " alt+s alt+shift+s",
+    "args": {}
+  },
+  {
+    "command": "expandLineSelection",
+    "key": " alt+s alt+l",
+    "args": {}
+  },
+  {
+    "command": "editor.action.selectHighlights",
+    "key": " alt+c alt+a",
+    "args": {}
+  },
+  {
+    "command": "editor.action.insertCursorAbove",
+    "key": " alt+c alt+i",
+    "args": {}
+  },
+  {
+    "command": "editor.action.insertCursorBelow",
+    "key": " alt+c alt+k",
+    "args": {}
+  },
+  {
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "key": " alt+c alt+c",
+    "args": {}
+  },
+  {
+    "command": "editor.action.moveSelectionToNextFindMatch",
+    "key": " alt+c alt+n",
+    "args": {}
+  },
+  {
+    "command": "editor.action.moveSelectionToPreviousFindMatch",
+    "key": " alt+c alt+p",
+    "args": {}
+  },
+  {
+    "command": "codereaper.jumpToTab",
+    "key": " alt+t alt+t",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.nextEditor",
+    "key": " alt+t alt+n",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.previousEditor",
+    "key": " alt+t alt+p",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.closeActiveEditor",
+    "key": " alt+t alt+x",
+    "args": {}
+  },
+  {
+    "command": "codereaper.fuzzySearchFiles",
+    "key": " alt+shift+/",
+    "args": {}
+  },
+  {
+    "command": "codereaper.fuzzySearchFileContents",
+    "key": " alt+/",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.splitEditor",
+    "key": " alt+\\",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.splitEditorOrthogonal",
+    "key": " alt+shift+\\",
+    "args": {}
+  },
+  {
+    "command": "editor.fold",
+    "key": "alt+f alt+f",
+    "args": {}
+  },
+  {
+    "command": "editor.unfold",
+    "key": "alt+f alt+u",
+    "args": {}
+  },
+  {
+    "command": "editor.foldAll",
+    "key": "alt+f alt+a",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.focusLeftGroup",
+    "key": "alt+e alt+j",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.focusRightGroup",
+    "key": "alt+e alt+l",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.focusAboveGroup",
+    "key": "alt+e alt+i",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.focusBelowGroup",
+    "key": "alt+e alt+k",
+    "args": {}
+  },
+  {
+    "command": "workbench.action.closeGroup",
+    "key": "alt+e alt+x",
+    "args": {}
+  }
+]
