@@ -37,12 +37,34 @@
 (global-set-key (kbd "M-q") 'magit-status)
 (global-set-key (kbd "M-l") 'magit-log-all-branches)
 (global-set-key (kbd "M-d") 'magit-diff-dwim)
+(global-set-key (kbd "M-r") 'magit-list-repositories)
 
+;; magit configuration
 (require 'magit)
-(kill-buffer)
-(magit-status)
-(switch-to-buffer-other-window "*Messages*")
-(kill-buffer)
+
+(setq magit-repolist-columns
+      '(("Name"    25 magit-repolist-column-ident ())
+        ("D"        1 magit-repolist-column-dirty ())
+        ("Path"    99 magit-repolist-column-path ())))
+
+(setq magit-repository-directories
+        '(("~/local_disk/everything_in_one_place"  . 0)
+          ("~/local_disk/Video_Lectures" . 10)))
+
+;; magit window setup
+
+(defvar init-error nil "")
+
+(condition-case the-error
+    (progn
+      ;; Do the dangerous stuff here.
+      (kill-buffer)
+      (magit-status)
+      (switch-to-buffer-other-window "*Messages*")
+      (kill-buffer))
+  (error
+   ;; This is only evaluated if there's an error.
+   (magit-list-repositories)))
 
 ;; theming
 (load-theme 'solarized-dark t)
