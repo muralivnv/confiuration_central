@@ -1,7 +1,7 @@
 # Unicode symbols for emojis can be found at https://getsymbols.com/
 format = """
-$directory $git_branch $git_state $cmake
-[🎄](bold white) """
+$directory $git_branch $git_state $git_commit
+$character """
 
 [directory]
 truncation_length = 3
@@ -9,8 +9,11 @@ truncate_to_repo  = false
 truncation_symbol = "../"
 format = "[$path](bold cyan)[$read_only]($read_only_style)"
 
-[git_branch]
-format = "|[$branch](bold purple)|"
-
 [cmake]
 disabled = true
+
+[character]
+#https://getemoji.com/
+success_symbol = "🐒"
+error_symbol = "👻"
+
