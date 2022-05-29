@@ -43,6 +43,8 @@
     "path": "${env:windir}\\System32\\cmd.exe",
   },
 
+  "editor.bracketPairColorization.enabled": false,
+
   // language specific tool paths, settings
   // C/C++
   "C_Cpp.errorSquiggles": "Disabled",
