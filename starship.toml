@@ -1,13 +1,15 @@
-# Unicode symbols for emojis can be found at https://getsymbols.com/
+# styling: https://starship.rs/advanced-config/#style-strings
+# prompt customization: https://starship.rs/config/#prompt
+
 format = """
-$directory $git_branch $git_state $git_commit
+$directory $git_branch $git_state $git_commit $cmd_duration $time
 $character """
 
 [directory]
 truncation_length = 3
 truncate_to_repo  = false
 truncation_symbol = "../"
-format = "[$path](bold cyan)[$read_only]($read_only_style)"
+format = "[$path](bold fg:#35b77a)[$read_only]($read_only_style)"
 
 [cmake]
 disabled = true
