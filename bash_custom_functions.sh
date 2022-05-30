@@ -22,12 +22,11 @@ __fzf_history__() {
     READLINE_POINT=0x7fffffff
   fi
 }
-
 __fzf_cd__() {
   local cmd opts dir
   cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"}"
-  opts="--height=40% --color hl:221,hl+:74 --algo=v2 --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS +m"
+  opts="--height=40% --color hl:221,hl+:74 --algo=v2 --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS +m --preview 'tree -C {} | head -200'"
   dir=$(eval "$cmd" | FZF_DEFAULT_OPTS="$opts" $(__fzfcmd))
   z "$dir"
 }
