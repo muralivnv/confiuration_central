@@ -17,7 +17,6 @@ alias '..'='cd ..'
 
 set +H
 
-bind -m emacs-standard -x '"\C-p": __fzf_history__'
-bind -m vi-command -x '"\C-p": __fzf_history__'
-bind -m vi-insert -x '"\C-p": __fzf_history__'
-
+bind -m emacs-standard -x '"\C-h": __fzf_history__'
+bind -m emacs-standard -x '"\C-o": __fzf_cd__'
+bind -m emacs-standard -x '"\C-p": fzf_file_widget'
