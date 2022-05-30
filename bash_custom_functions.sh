@@ -31,7 +31,9 @@ __fzf_cd__() {
     -o -type d -print 2> /dev/null | cut -b3-"}"
   opts="--height=100% --color hl:221,hl+:74 --algo=v2 --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS +m $preview_opts"
   dir=$(eval "$cmd" | FZF_DEFAULT_OPTS="$opts" $(__fzfcmd))
-  z "$dir"
+  if [[ ! -z "$dir" ]]; then
+    z "$dir"
+  fi
 }
 
 __fzf_select__() {
