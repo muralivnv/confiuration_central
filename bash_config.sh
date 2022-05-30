@@ -1,4 +1,5 @@
 source ~/.config/bash_custom_functions.sh
+source ~/.config/fzf_tab/fzf-bash-completion.sh
 
 # set PATH so it includes user's private ~/.local/bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
@@ -17,6 +18,7 @@ alias '..'='cd ..'
 
 set +H
 
-bind -m emacs-standard -x '"\C-h": __fzf_history__'
-bind -m emacs-standard -x '"\C-o": __fzf_cd__'
-bind -m emacs-standard -x '"\C-p": fzf_file_widget'
+bind -x '"\C-h": __fzf_history__'
+bind -x '"\C-o": __fzf_cd__'
+bind -x '"\C-p": fzf_file_widget'
+bind -x '"\t" : fzf_bash_completion'
