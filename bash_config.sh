@@ -15,6 +15,7 @@ eval "$(starship init bash)"
 # setup custom aliases
 alias byb='byobu'
 alias '..'='cd ..'
+alias 'rm_pkg_residual'="sudo apt remove --purge `dpkg -l | grep '^rc' | awk '{print $2}'`"
 
 set +H
 
