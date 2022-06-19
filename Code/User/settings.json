@@ -151,8 +151,8 @@
     {
       "editor.background":                            "#1f2122",
       "editorGutter.background":                      "#1f2122",
-      "editor.selectionBackground":                   "#454546a4",
-      "editor.selectionHighlightBorder":              "#bebebe54",
+      "editor.selectionBackground":                   "#474b43a4",
+      "editor.selectionHighlightBorder":              "#27555ee3",
       "editorSuggestWidget.highlightForeground":      "#e4767b",
       "editorSuggestWidget.focusHighlightForeground": "#e9bf6c",
       "editorSuggestWidget.selectedBackground":       "#27555ee3",
