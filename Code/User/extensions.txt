@@ -1,14 +1,14 @@
-bobsparadox.seti-black
 DavidAnson.vscode-markdownlint
-Gruntfuggly.todo-tree
 koehlma.markdown-math
-marus25.cortex-debug
+llvm-vs-code-extensions.vscode-clangd
 ms-python.python
+ms-python.vscode-pylance
 ms-toolsai.jupyter
 ms-toolsai.jupyter-keymap
 ms-toolsai.jupyter-renderers
 ms-vscode.cpptools
 muralivnv.codereaper
 pawelgrzybek.gatito-theme
+redhat.vscode-yaml
 shuworks.vscode-jump-to-hint
 twxs.cmake

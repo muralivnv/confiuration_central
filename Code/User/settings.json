@@ -46,11 +46,6 @@
   "editor.bracketPairColorization.enabled": false,
 
   // language specific tool paths, settings
-  // C/C++
-  "C_Cpp.errorSquiggles": "Disabled",
-  "C_Cpp.enhancedColorization": "Enabled",
-  "cmake.cmakePath": "C:/Program Files/CMake/bin/cmake",
-
   // Python
   "python.pythonPath": "C:\\Anaconda3\\python.exe",
   "python.languageServer": "Jedi",
@@ -67,6 +62,14 @@
     "default": "right",
     "jupyter-notebook": "left"
   },
+
+  // C/C++
+  "C_Cpp.enhancedColorization": "Enabled",
+  "C_Cpp.errorSquiggles": "Disabled",
+  "C_Cpp.autocomplete": "Disabled",
+  "C_Cpp.intelliSenseEngine": "Disabled",
+  "clangd.path": "/home/murali/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/14.0.3/clangd_14.0.3/bin/clangd",
+  "clangd.checkUpdates": true,
 
   // Git
   "git.enabled": false,
@@ -102,8 +105,14 @@
     "**/*.ilk": true,
     "**/*.dll": true
   },
+  
+  "workbench.activityBar.visible": false,
+  "diffEditor.renderSideBySide": false,
+  "workbench.layoutControl.enabled": false,
 
   // Extensions ------------
+  "workbench.colorTheme": "Gatito Theme",
+  "redhat.telemetry.enabled": false,
 
   // Theme customizations
   "workbench.colorCustomizations": {
@@ -701,9 +710,10 @@
       "args": {}
     }
   },
-  "codereaper.stickyParentKeys": ["m", "c", "e"],
-  "workbench.colorTheme": "Gatito Theme",
-  "workbench.activityBar.visible": false,
-  "diffEditor.renderSideBySide": false,
-  "workbench.layoutControl.enabled": false
+  "codereaper.stickyParentKeys": [
+    "m",
+    "c",
+    "e"
+  ],
+  "editor.inlayHints.enabled": false
 }
