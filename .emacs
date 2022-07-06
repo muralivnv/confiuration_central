@@ -34,6 +34,18 @@
 ;; set theme
 (load-theme 'humanoid-light t)
 
+(defun open-with-code (arg)
+  (interactive "P")
+  (setq toplevel-dir
+  (substring
+    (shell-command-to-string "git rev-parse --show-toplevel")
+  0 -1))
+   (setq relfile (buffer-substring (line-beginning-position) (line-end-position)))
+   (setq full-filepath (concat toplevel-dir "/" relfile))
+   (call-process-shell-command (concat "code " full-filepath) nil t)
+)
+(global-set-key (kbd "M-e") 'open-with-code)
+
 ;; #################################
 ;; Magit Setup
 ;; #################################
