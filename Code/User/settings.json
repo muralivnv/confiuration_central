@@ -75,6 +75,7 @@
   "git.enabled": false,
   "git.autofetch": false,
   "git.path": null,
+  "git.mergeEditor": true,
 
   // Debugging
   "debug.showBreakpointsInOverviewRuler": true,
@@ -710,6 +711,7 @@
       "args": {}
     }
   },
+  "codereaper.fzfOptions": "--algo=v2 --color hl:221,hl+:74 --border -i --preview 'echo {1..}' --preview-window 'up,35%,border-none,wrap' ",
   "codereaper.stickyParentKeys": [
     "m",
     "c",
