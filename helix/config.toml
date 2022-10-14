@@ -1,20 +1,24 @@
-theme = "everforest_dark"
+theme = "oceanic_next"
 
 [editor]
 middle-click-paste = false
 cursorline = true
 true-color = true
 color-modes = true
+line-number = "relative"
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 
+[editor.file-picker]
+hidden = true
+
 # https://docs.helix-editor.com/keymap.html#select--extend-mode
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
 [keys.normal]
 "A-e" = "insert_mode"
-"ret" = ["open_below", "normal_mode"]
+"ret" = ["insert_newline", "normal_mode"]
 
 i = "move_line_up"
 I = ["extend_line_up"]
@@ -36,6 +40,7 @@ C-y = "redo"
 C-v = "paste_clipboard_before"
 C-S-v = "paste_clipboard_after"
 C-c = "yank_main_selection_to_clipboard"
+C-x = ["extend_line_below", "yank_main_selection_to_clipboard", "delete_selection"]
 "," = ["goto_line_end", "move_char_right"]
 ";" = ["goto_first_nonwhitespace"]
 
@@ -44,9 +49,9 @@ C-c = "yank_main_selection_to_clipboard"
 "C-/" = "toggle_comments"
 "C-n" = "search_next"
 "C-p" = "search_prev"
-"C-f" = "search"
 g = { t = "goto_file_start", b = "goto_last_line"}
-"[" = { "[" = "jump_backward", "]" = "jump_forward"}
+"[" = { "[" = "jump_backward"}
+"]" = { "]" = "jump_forward" }
 
 e = { t = "buffer_picker", n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down" }
 "\\" = "vsplit"
@@ -78,19 +83,19 @@ C-y = "redo"
 C-v = "paste_clipboard_before"
 C-S-v = "paste_clipboard_after"
 C-c = "yank_main_selection_to_clipboard"
+C-x = ["extend_line_below", "yank_main_selection_to_clipboard", "delete_selection"]
 "C-/" = "toggle_comments"
-"C-f" = "search"
 "C-space" = "completion"
 
 [keys.select]
-i = ["extend_line_up", "extend_to_line_bounds"]
-k = ["extend_line_down", "extend_to_line_bounds"]
+i = ["extend_line_up"]
+k = ["extend_line_down"]
 u = ["extend_char_left"]
 o = ["extend_char_right"]
 j = ["extend_prev_word_start"]
 l = ["extend_next_word_start"]
 
-C-c = ["yank_main_selection_to_clipboard", "collapse_selection", "normal_mode"]
+C-c = ["yank_main_selection_to_clipboard", "normal_mode"]
 "," = ["goto_line_end"]
 ";" = ["goto_first_nonwhitespace"]
 "backspace" = ["delete_selection", "normal_mode"]

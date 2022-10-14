@@ -23,7 +23,7 @@
 "variable"                  = { fg = "white"                                           }
 "variable.builtin"          = { fg = "red"                                             }
 "variable.parameter"        = { fg = "#F99157"                                         }
-#variable.other.member"     = { fg = "#F99157"                                         }
+"variable.other.member"     = { fg = "blue"                                         }
 "punctuation"               = { fg = "white"                                           }
 "punctuation.special"       = { fg = "#F99157"                                         }
 
@@ -32,8 +32,8 @@
 "markup.raw.block"          = { fg = "white"                                           }
 "markup.bold"               = { fg = "gold", modifiers = ["bold"]                      }
 "markup.italic"             = { fg = "purple", modifiers = ["italic"]                  }
-"markup.list"               = { fg = "red"                                             }
-"markup.quote"              = { fg = "yellow"                                          }
+"markup.list"               = { fg = "moss_green"                                             }
+"markup.quote"              = { fg = "forest_green"                                          }
 "markup.link.url"           = { fg = "blue", modifiers = ["underlined"]                }
 "markup.link.text"          = { fg = "white"                                           }
 "markup.link.label"         = { fg = "white"                                           }
@@ -43,7 +43,7 @@
 "diff.minus"                = "red"
 
 "diagnostic"                = { modifiers = ["underlined"]                             }
-"info"                      = { fg = "blue", modifiers = ["bold"]                      }
+"info"                      = { fg = "cyan", modifiers = ["bold"]                      }
 "hint"                      = { fg = "green", modifiers = ["bold"]                     }
 "warning"                   = { fg = "yellow", modifiers = ["bold"]                    }
 "error"                     = { fg = "red", modifiers = ["bold"]                       }
@@ -52,11 +52,11 @@
 #"ui.virtual"                = { fg = "faint-gray"                                     }
 #"ui.virtual.indent-guide"   = { fg = "faint-gray"                                     }
 #"ui.virtual.whitespace"     = { fg = "light-gray"                                     }
-#"ui.virtual.ruler"          = { bg = "gray"                                           }
+#ui.virtual.ruler"          = { bg = "gray"                                           }
 
 "ui.cursor"                 = { fg = "white", modifiers = ["reversed"]                 }
 "ui.cursor.primary"         = { fg = "white", modifiers = ["reversed"]                 }
-"ui.cursor.match"           = { fg = "blue", modifiers = ["reversed"]                  }
+"ui.cursor.match"           = { fg = "red", modifiers = ["bold", "underlined"]                  }
 
 "ui.selection"              = { bg = "#474b43a4"                                       }
 "ui.selection.primary"      = { bg = "#474b43a4"                                       }
@@ -72,11 +72,11 @@
 "ui.statusline.select"      = { fg = "dark", bg = "blue"                               }
 
 "ui.text"                   = { fg = "white"                                           }
-"ui.text.focus"             = { fg = "white", bg = "light-black", modifiers = ["bold"] }
+"ui.text.focus"             = { fg = "dark", bg = "moss_green", modifiers = ["bold"] }
 
 "ui.help"                   = { fg = "white", bg = "dark"                              }
 "ui.popup"                  = { bg = "dark"                                            }
-"ui.window"                 = { fg = "white"                                           }
+"ui.window"                 = { fg = "cyan"                                           }
 "ui.menu"                   = { fg = "white", bg = "gray"                              }
 "ui.menu.selected"          = { fg = "black", bg = "red"                               }
 "ui.menu.scroll"            = { fg = "white", bg = "#474b43a4"                         }
