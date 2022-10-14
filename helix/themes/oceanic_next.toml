@@ -72,12 +72,12 @@
 "ui.statusline.select"      = { fg = "dark", bg = "blue"                               }
 
 "ui.text"                   = { fg = "white"                                           }
-"ui.text.focus"             = { fg = "dark", bg = "moss_green", modifiers = ["bold"] }
+"ui.text.focus"             = { fg = "white", bg = "#404040"}
 
-"ui.help"                   = { fg = "white", bg = "dark"                              }
-"ui.popup"                  = { bg = "dark"                                            }
+"ui.help"                   = { fg = "white", bg = "#282928"                              }
+"ui.popup"                  = { bg = "#282928"                                            }
 "ui.window"                 = { fg = "cyan"                                           }
-"ui.menu"                   = { fg = "white", bg = "gray"                              }
+"ui.menu"                   = { fg = "white", bg = "#282928"                              }
 "ui.menu.selected"          = { fg = "black", bg = "red"                               }
 "ui.menu.scroll"            = { fg = "white", bg = "#474b43a4"                         }
 

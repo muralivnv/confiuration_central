@@ -49,7 +49,7 @@ C-x = ["extend_line_below", "yank_main_selection_to_clipboard", "delete_selectio
 "C-/" = "toggle_comments"
 "C-n" = "search_next"
 "C-p" = "search_prev"
-g = { t = "goto_file_start", b = "goto_last_line"}
+g = { t = "goto_file_start", b = "goto_last_line", i = "hover"}
 "[" = { "[" = "jump_backward"}
 "]" = { "]" = "jump_forward" }
 
