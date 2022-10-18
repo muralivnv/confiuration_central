@@ -22,12 +22,16 @@ hidden = false # do not ignore hidden
 
 i = "move_line_up"
 I = "extend_line_up"
+"A-I" = "extend_line_up"
 k = "move_line_down"
 K = "extend_line_down"
+"A-K" = "extend_line_down"
 j = "move_prev_word_start"
 J = "extend_prev_word_start"
+"A-J" = "extend_prev_word_start"
 l = "move_next_word_start"
 L = "extend_next_long_word_start"
+"A-L" = "extend_next_long_word_start"
 u = "move_char_left"
 U = "extend_char_left"
 o = "move_char_right"
@@ -62,47 +66,52 @@ e = { t = "buffer_picker", n = "goto_next_buffer", p = "goto_previous_buffer", j
 "S-tab" = "unindent"
 
 [keys.insert]
-"A-e" = "normal_mode"
-j = { k = "normal_mode" }
+"A-e"     = "normal_mode"
+j         = { k = "normal_mode" }
 
-"A-i" = "move_line_up"
-"A-k" = "move_line_down"
-"A-j" = "move_prev_word_start"
-"A-J" = "move_prev_long_word_start"
-"A-l" = "move_next_word_start"
-"A-L" = "move_next_long_word_start"
-"A-u" = "move_char_left"
-"A-o" = "move_char_right"
-"A-." = "repeat_last_motion"
-"A-n" = "page_down"
-"A-p" = "page_up"
-"A-," = ["goto_line_end", "move_char_right"]
-"A-;" = ["goto_first_nonwhitespace"]
+"A-i"     = ["move_line_up"]
+"A-I"     = ["extend_line_up", "normal_mode"]
+"A-k"     = ["move_line_down"]
+"A-K"     = ["extend_line_down", "normal_mode"]
+"A-j"     = ["move_prev_word_start", "collapse_selection"]
+"A-J"     = ["move_prev_long_word_start", "normal_mode"]
+"A-l"     = ["move_next_word_start", "collapse_selection"]
+"A-L"     = ["move_next_long_word_start", "normal_mode"]
+"A-u"     = "move_char_left"
+"A-o"     = "move_char_right"
+"A-."     = "repeat_last_motion"
+"A-n"     = "page_down"
+"A-p"     = "page_up"
+"A-,"     = ["goto_line_end", "move_char_right"]
+"A-;"     = ["goto_first_nonwhitespace"]
 
-C-z = "undo"
-C-y = "redo"
-C-v = "paste_clipboard_before"
-C-S-v = "paste_clipboard_after"
-C-c = "yank_main_selection_to_clipboard"
-C-x = ["extend_line_below", "yank_main_selection_to_clipboard", "delete_selection"]
-"C-/" = "toggle_comments"
+C-z       = "undo"
+C-y       = "redo"
+C-v       = "paste_clipboard_before"
+C-S-v     = "paste_clipboard_after"
+C-c       = "yank_main_selection_to_clipboard"
+C-x       = ["extend_line_below", "yank_main_selection_to_clipboard", "delete_selection"]
 "C-space" = "completion"
+"tab"     = "indent"
+"S-tab"   = "unindent"
 
 [keys.select]
-i = "extend_line_up"
-k = "extend_line_down"
-u = "extend_char_left"
-o = "extend_char_right"
-j = "extend_prev_word_start"
-l = "extend_next_word_start"
+i           = "extend_line_up"
+k           = "extend_line_down"
+u           = "extend_char_left"
+o           = "extend_char_right"
+j           = "extend_prev_word_start"
+l           = "extend_next_word_start"
 
-C-c = ["yank_main_selection_to_clipboard", "normal_mode"]
-C-z = "undo"
-C-y = "redo"
-"," = "goto_line_end"
-";" = "goto_first_nonwhitespace"
+C-c         = ["yank_main_selection_to_clipboard", "normal_mode"]
+C-z         = "undo"
+C-y         = "redo"
+C-c         = "yank_main_selection_to_clipboard"
+C-x         = ["extend_line_below", "yank_main_selection_to_clipboard", "delete_selection", "normal_mode"]
+","         = "goto_line_end"
+";"         = "goto_first_nonwhitespace"
 "backspace" = ["delete_selection", "normal_mode"]
-esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
-N = "remove_primary_selection"
-"tab" = "indent"
-"S-tab" = "unindent"
+esc         = ["collapse_selection", "keep_primary_selection", "normal_mode"]
+N           = "remove_primary_selection"
+"tab"       = "indent"
+"S-tab"     = "unindent"
