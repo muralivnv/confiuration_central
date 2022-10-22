@@ -20,10 +20,11 @@
 "special"                   = { fg = "blue"                                                     }
 "string"                    = { fg = "green"                                                    }
 "type"                      = { fg = "yellow"                                                   }
-"variable"                  = { fg = "white"                                                    }
 "variable.builtin"          = { fg = "red"                                                      }
 "variable.parameter"        = { fg = "#F99157"                                                  }
 "variable.other.member"     = { fg = "blue"                                                     }
+"variable.other.enummember" = { fg = "red"                                                      }
+"variable"                  = { fg = "white"                                                    }
 "punctuation"               = { fg = "white"                                                    }
 "punctuation.special"       = { fg = "#F99157"                                                  }
 
