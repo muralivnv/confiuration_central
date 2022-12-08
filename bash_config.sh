@@ -16,7 +16,12 @@ eval "$(starship init bash)"
 alias byb='byobu'
 alias '..'='cd ..'
 alias 'rm_pkg_residual'="sudo apt remove --purge `dpkg -l | grep '^rc' | awk '{print $2}'`"
+alias hx='helix-22.12-x86_64.AppImage'
+alias helix='helix-22.12-x86_64.AppImage'
+alias khx='kitty --title "$(pwd)" --detach helix-22.12-x86_64.AppImage'
+alias khelix='kitty --title "$(pwd)" --detach helix-22.12-x86_64.AppImage'
 
+# other
 set +H
 
 bind -x '"\C-h": __fzf_history__'

@@ -12,7 +12,7 @@ insert = "bar"
 normal = "block"
 
 [editor.file-picker]
-hidden = false # do not ignore hidden
+hidden = true # do not ignore hidden
 
 # https://docs.helix-editor.com/keymap.html#select--extend-mode
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
@@ -38,7 +38,23 @@ o         = "move_char_right"
 O         = "extend_char_right"
 n         = "page_down"
 p         = "page_up"
-R         = "repeat_last_motion"
+">"       = "repeat_last_motion"
+","       = ["goto_line_end", "move_char_right"]
+";"       = "goto_first_nonwhitespace"
+"R"       = ["delete_selection", "paste_clipboard_before"]
+esc       = "keep_primary_selection"
+backspace = "delete_char_backward"
+g         = { t = "goto_file_start", b = "goto_last_line", i = "hover"}
+"["       = { "[" = "jump_backward"}
+"]"       = { "]" = "jump_forward" }
+e = { n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = ":bc", X = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down" }
+"space" = { "space" = "last_picker" }
+"\\"    = "vsplit"
+"|"     = "hsplit"
+"'"     = "file_picker"
+"tab"   = "indent"
+"S-tab" = "unindent"
+
 C-s       = ":w"
 C-z       = "undo"
 C-y       = "redo"
@@ -46,35 +62,23 @@ C-v       = "paste_clipboard_before"
 C-S-v     = "paste_clipboard_after"
 C-c       = "yank_main_selection_to_clipboard"
 C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
-","       = ["goto_line_end", "move_char_right"]
-";"       = "goto_first_nonwhitespace"
-
-esc       = "keep_primary_selection"
-backspace = "delete_char_backward"
-"C-/"     = "toggle_comments"
 "C-n"     = "search_next"
 "C-p"     = "search_prev"
-g         = { t = "goto_file_start", b = "goto_last_line", i = "hover"}
-"["       = { "[" = "jump_backward"}
-"]"       = { "]" = "jump_forward" }
-
-e = { n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = ":bc", X = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down" }
-"\\"    = "vsplit"
-"|"     = "hsplit"
-"'"     = "file_picker"
-"tab"   = "indent"
-"S-tab" = "unindent"
+"C-r"     = [":reload"]
+"C-R"     = [":reload-all"]
+"C-q"     = "toggle_comments"
+"q"       = "collapse_selection"
 
 [keys.insert]
 "A-e"     = "normal_mode"
-k         = { k = ["normal_mode"] }
+j         = { k = ["normal_mode"] }
 
 "A-i"     = ["move_line_up"]
 "A-I"     = ["extend_line_up", "normal_mode"]
-"A-k"     = ["move_line_down"]
-"A-K"     = ["extend_line_down", "normal_mode"]
 "A-j"     = ["move_prev_word_start", "collapse_selection"]
 "A-J"     = ["move_prev_word_start", "normal_mode"]
+"A-k"     = ["move_line_down"]
+"A-K"     = ["extend_line_down", "normal_mode"]
 "A-l"     = ["move_next_word_start", "collapse_selection"]
 "A-L"     = ["move_next_word_start", "normal_mode"]
 "A-u"     = "move_char_left"
@@ -110,8 +114,9 @@ C-c         = "yank_main_selection_to_clipboard"
 C-x         = ["yank_main_selection_to_clipboard", "delete_selection", "normal_mode"]
 ","         = "goto_line_end"
 ";"         = "goto_first_nonwhitespace"
+"q"         = "collapse_selection"
+"Q"         = "toggle_comments"
 "backspace" = ["delete_selection", "normal_mode"]
-esc         = ["collapse_selection", "keep_primary_selection", "normal_mode"]
-N           = "remove_primary_selection"
+esc         = ["normal_mode"]
 "tab"       = "indent"
 "S-tab"     = "unindent"
