@@ -20,6 +20,7 @@ alias hx='helix-22.12-x86_64.AppImage'
 alias helix='helix-22.12-x86_64.AppImage'
 alias khx='kitty --title "$(pwd)" --detach helix-22.12-x86_64.AppImage'
 alias khelix='kitty --title "$(pwd)" --detach helix-22.12-x86_64.AppImage'
+alias sar='python3 ~/.config/scripts/rg_search_and_replace.py'
 
 # other
 set +H
