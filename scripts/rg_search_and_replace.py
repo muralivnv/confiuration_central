@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 import sys
 
 # constants
-INTERACTIVE_CMD = '{RG_BASE_CMD} -l | fzf --sort --preview="{RG_BASE_CMD} --color=always -C 2 {}" --preview-window="up,70%:wrap" --ansi --bind="enter:execute({RG_BASE_CMD} --passthru {} > {}.temp && mv {}.temp {})" --cycle'
+INTERACTIVE_CMD = '{RG_BASE_CMD} -l | fzf --sort --preview="{RG_BASE_CMD} --color=always -C 2 {}" --preview-window="up,70%:wrap" --ansi --bind="enter:execute({RG_BASE_CMD} --passthru {} > {}.temp && mv {}.temp {}),shift-tab:up,tab:down" --cycle'
 NONINTERACTIVE_CMD = "{RG_BASE_CMD} -l | xargs -I @ sh -c '{RG_BASE_CMD} --passthru @ > @.temp && mv @.temp @' "
 
 # helper functions
