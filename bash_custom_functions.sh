@@ -10,7 +10,7 @@ __fzf_history__() {
   local output opts script preview_opts
 
   preview_opts="--preview 'echo {}' --preview-window=down,50%"
-  opts="--height=100% --color hl:221,hl+:74 --algo=v2 $preview_opts --reverse -n2..,.. --tiebreak=index +m --read0"
+  opts="--height=100% --color hl:221,hl+:74 --algo=v2 $preview_opts --reverse -n2..,.. --tiebreak=index +m --read0 --bind=tab:down,shift-tab:up"
   script='BEGIN { getc; $/ = "\n\t"; $HISTCOUNT = $ENV{last_hist} + 1 } s/^[ *]//; print $HISTCOUNT - $. . "\t$_" if !$seen{$_}++'
   output=$(
     builtin fc -lnr -2147483648 |
@@ -29,7 +29,7 @@ __fzf_cd__() {
   preview_opts="--preview 'tree -C {} | head -200' --preview-window=down,60%"
   cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"}"
-  opts="--height=100% --color hl:221,hl+:74 --algo=v2 --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS +m $preview_opts"
+  opts="--height=100% --color hl:221,hl+:74 --algo=v2 --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS +m $preview_opts --bind=tab:down,shift-tab:up"
   dir=$(eval "$cmd" | FZF_DEFAULT_OPTS="$opts" $(__fzfcmd))
   if [[ ! -z "$dir" ]]; then
     z "$dir"
