@@ -11,18 +11,18 @@ NONINTERACTIVE_CMD = "{RG_BASE_CMD} -l | xargs -I @ sh -c '{RG_BASE_CMD} --passt
 
 # helper functions
 def create_rg_base_cmd(parsed_args) -> str:
-    out = f"rg {parsed_args.old} {parsed_args.rg_opt}"
+    out = f"rg {parsed_args.old} {parsed_args.rg_opt} "
     if any(parsed_args.new):
-        out = f"{out} -r {parsed_args.new}"
+        out = f"{out} -r {parsed_args.new} "
     return out
 
 def trigger(parsed_args) -> None:
     rg_base_cmd = create_rg_base_cmd(parsed_args)
     full_cmd = None
-    if parsed_args.interactive:
-        full_cmd = INTERACTIVE_CMD.replace("{RG_BASE_CMD}", rg_base_cmd)
-    else:
+    if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD.replace("{RG_BASE_CMD}", rg_base_cmd)
+    else:
+        full_cmd = INTERACTIVE_CMD.replace("{RG_BASE_CMD}", rg_base_cmd)
     try:
         subprocess.check_call(full_cmd, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     cli.add_argument("-c", "--rg-opt", type=str, help="ripgrep options", dest="rg_opt", required=True)
     cli.add_argument("-o", "--old", type=str, help="pattern to replace", dest="old", required=True)
     cli.add_argument("-n", "--new", type=str, help="replace with", dest="new", required=False, default="")
-    cli.add_argument("-i", "--interactive", action="store_true", dest="interactive")
+    cli.add_argument("-ni", "--no-interactive", action="store_true", dest="no_interactive")
     parsed_args = cli.parse_args()
 
     trigger(parsed_args)
