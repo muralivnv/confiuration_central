@@ -11,9 +11,9 @@ NONINTERACTIVE_CMD = "{RG_BASE_CMD} -l | xargs -I @ sh -c '{RG_BASE_CMD} --passt
 
 # helper functions
 def create_rg_base_cmd(parsed_args) -> str:
-    out = f"rg {parsed_args.old} {parsed_args.rg_opt} "
-    if any(parsed_args.new):
-        out = f"{out} -r {parsed_args.new} "
+    out = f"rg {parsed_args.query} {parsed_args.rg_opt} "
+    if any(parsed_args.replace):
+        out = f"{out} -r {parsed_args.replace} "
     return out
 
 def trigger(parsed_args) -> None:
@@ -26,14 +26,14 @@ def trigger(parsed_args) -> None:
     try:
         subprocess.check_call(full_cmd, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-        pass
+        print(e)
 
 if __name__ == "__main__":
     cli = ArgumentParser()
-    cli.add_argument("-c", "--rg-opt", type=str, help="ripgrep options", dest="rg_opt", required=True)
-    cli.add_argument("-o", "--old", type=str, help="pattern to replace", dest="old", required=True)
-    cli.add_argument("-n", "--new", type=str, help="replace with", dest="new", required=False, default="")
+    cli.add_argument("-c", "--rg-opt", type=str, help="ripgrep options", dest="rg_opt", default="-S -w", required=False)
     cli.add_argument("-ni", "--no-interactive", action="store_true", dest="no_interactive")
+    cli.add_argument("-q", "--query", type=str, required=True, dest="query", help="pattern to search")
+    cli.add_argument("-r", "--replace", type=str, required=False, dest="replace", help="replace with", default="")
     parsed_args = cli.parse_args()
 
     trigger(parsed_args)
