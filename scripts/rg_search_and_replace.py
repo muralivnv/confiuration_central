@@ -8,6 +8,7 @@ import sys
 # constants
 INTERACTIVE_CMD = '{RG_BASE_CMD} -l | fzf --sort --reverse --preview="{RG_BASE_CMD} --color=always -C 2 {}" --preview-window="up,70%:wrap" --ansi --bind="enter:execute({RG_BASE_CMD} --passthru {} > {}.temp && mv {}.temp {}),shift-tab:up,tab:down" --cycle'
 NONINTERACTIVE_CMD = "{RG_BASE_CMD} -l | xargs -I @ sh -c '{RG_BASE_CMD} --passthru @ > @.temp && mv @.temp @' "
+FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
 
 # helper functions
 def create_rg_base_cmd(parsed_args) -> str:
@@ -26,7 +27,8 @@ def trigger(parsed_args) -> None:
     try:
         subprocess.check_call(full_cmd, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
-        print(e)
+        if not (e.returncode in FZF_ERR_CODE_TO_IGNORE):
+            print(e)
 
 if __name__ == "__main__":
     cli = ArgumentParser()
