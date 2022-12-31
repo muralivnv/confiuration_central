@@ -1,0 +1,7 @@
+/*set custom gtk3/css code below */
+
+vte-terminal, VteTerminal {
+
+-GtkWidget-cursor-aspect-ratio: 0.12;
+
+}
