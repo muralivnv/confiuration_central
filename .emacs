@@ -79,6 +79,7 @@
         '(("~/local_disk/everything_in_one_place"  . 0)
           ("~/local_disk/Video_Lectures" . 10)
           ("~/.config" . 0)
+          ("~/local_disk/app_dev" . 2)
           ("~/local_disk/c++/" . 3)))
 
 ;; opening screen

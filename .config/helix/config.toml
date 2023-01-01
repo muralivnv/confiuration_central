@@ -64,9 +64,8 @@ C-c       = "yank_main_selection_to_clipboard"
 C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
 "C-n"     = "search_next"
 "C-p"     = "search_prev"
-"C-r"     = [":reload"]
-"C-R"     = [":reload-all"]
-"C-q"     = "toggle_comments"
+"C-r"     = [":reload-all"]
+"A-q"     = "toggle_comments"
 "q"       = "collapse_selection"
 
 [keys.insert]
