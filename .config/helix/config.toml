@@ -6,6 +6,7 @@ cursorline = true
 true-color = true
 color-modes = true
 line-number = "relative"
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer"]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -13,6 +14,9 @@ normal = "block"
 
 [editor.file-picker]
 hidden = false # do not ignore hidden
+
+[editor.lsp]
+auto-signature-help = false
 
 # https://docs.helix-editor.com/keymap.html#select--extend-mode
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197

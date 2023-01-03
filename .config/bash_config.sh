@@ -1,5 +1,6 @@
 source ~/.config/bash_custom_functions.sh
 source ~/.config/fzf_tab/fzf-bash-completion.sh
+source ~/.config/bash_aliases.sh
 
 # set PATH so it includes user's private ~/.local/bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
@@ -11,16 +12,6 @@ eval "$(zoxide init bash)"
 
 # setup starship prompt
 eval "$(starship init bash)"
-
-# setup custom aliases
-alias byb='byobu'
-alias '..'='cd ..'
-alias 'rm_pkg_residual'="sudo apt remove --purge `dpkg -l | grep '^rc' | awk '{print $2}'`"
-alias hx='helix-22.12-x86_64.AppImage'
-alias helix='helix-22.12-x86_64.AppImage'
-alias khx='kitty --title "$(pwd)" --detach helix-22.12-x86_64.AppImage'
-alias khelix='kitty --title "$(pwd)" --detach helix-22.12-x86_64.AppImage'
-alias sar='python3 ~/.config/scripts/rg_search_and_replace.py'
 
 # other
 set +H
