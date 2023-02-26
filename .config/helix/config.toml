@@ -22,6 +22,7 @@ auto-signature-help = false
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
 [keys.normal]
 "A-e"     = "insert_mode"
+"h"       = "insert_mode"
 "ret"     = ["insert_newline", "normal_mode"]
 
 i         = "move_line_up"
@@ -45,11 +46,12 @@ p         = "page_up"
 ">"       = "repeat_last_motion"
 ","       = ["goto_line_end", "move_char_right"]
 ";"       = "goto_first_nonwhitespace"
+"R"       = ["delete_selection", "paste_clipboard_before"]
 esc       = "keep_primary_selection"
 backspace = "delete_char_backward"
-g         = { t = "goto_file_start", b = "goto_last_line", i = "hover"}
-"["       = { "[" = "jump_backward"}
-"]"       = { "]" = "jump_forward" }
+g         = { t = "goto_file_start", b = "goto_last_line", i = "hover" }
+"["       = { "[" = "jump_backward" }
+"]"       = { "]" = "jump_forward"  }
 e = { n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = ":bc", X = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down" }
 "space" = { "space" = "last_picker" }
 "\\"    = "vsplit"
@@ -72,9 +74,14 @@ C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
 "q"       = "collapse_selection"
 "a"       = "shell_pipe"
 "S-a"     = "shell_pipe_to"
+x         = "extend_line"
+"V"       = ["goto_first_nonwhitespace", "extend_to_line_end"]
+"b"       = "buffer_picker"
+"Z"       = { i = ["scroll_up"], k = ["scroll_down"] }
 
 [keys.insert]
 "A-e"     = "normal_mode"
+"A-h"     = "normal_mode"
 j         = { k = ["normal_mode"] }
 
 "A-i"     = ["move_line_up"]
@@ -100,6 +107,7 @@ C-S-v     = "paste_clipboard_after"
 C-c       = "yank_main_selection_to_clipboard"
 C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
 "C-space" = "completion"
+"C-s"     = ["normal_mode", ":w"]
 "tab"     = ["normal_mode", "indent"]
 "S-tab"   = ["normal_mode", "unindent"]
 
@@ -108,3 +116,11 @@ C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
 ";"         = "goto_first_nonwhitespace"
 "backspace" = ["delete_selection", "normal_mode"]
 esc         = ["normal_mode"]
+i         = "extend_line_up"
+k         = "extend_line_down"
+j         = "extend_prev_word_start"
+l         = "extend_next_word_start"
+u         = "extend_char_left"
+o         = "extend_char_right"
+"C-n"     = "search_next"
+"C-p"     = "search_prev"
