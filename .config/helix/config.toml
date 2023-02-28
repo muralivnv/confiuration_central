@@ -52,7 +52,7 @@ backspace = "delete_char_backward"
 g         = { t = "goto_file_start", b = "goto_last_line", i = "hover" }
 "["       = { "[" = "jump_backward" }
 "]"       = { "]" = "jump_forward"  }
-e = { n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = ":bc", X = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down" }
+e = { n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = ":bc", X = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down", q = [":bc", "wclose"] }
 "space" = { "space" = "last_picker" }
 "\\"    = "vsplit"
 "|"     = "hsplit"

@@ -59,19 +59,19 @@
 "ui.selection" = { bg = "bg3" }
 "ui.linenr" = "grey0"
 "ui.linenr.selected" = "fg"
-"ui.statusline" = { fg = "grey2", bg = "bg3" }
+"ui.statusline" = { fg = "grey2", bg = "bg1" }
 "ui.statusline.inactive" = { fg = "grey0", bg = "bg1" }
-"ui.statusline.normal" = { fg = "bg0", bg = "grey2", modifiers = ["bold"] }
-"ui.statusline.insert" = { fg = "bg0", bg = "yellow", modifiers = ["bold"] }
-"ui.statusline.select" = { fg = "bg0", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.normal" = { fg = "bg0", bg = "grey2" }
+"ui.statusline.insert" = { fg = "bg0", bg = "yellow" }
+"ui.statusline.select" = { fg = "bg0", bg = "blue" }
 "ui.bufferline" = { fg = "grey0", bg = "bg1" }
-"ui.bufferline.active" = { fg = "fg", bg = "bg3", modifiers = ["bold"] }
-"ui.popup" = { fg = "grey2", bg = "bg2" }
+"ui.bufferline.active" = { fg = "fg", bg = "bg3" }
+"ui.popup" = { fg = "grey2", bg = "bg0" }
 "ui.window" = { fg = "grey0", bg = "bg0" }
-"ui.help" = { fg = "fg", bg = "bg2" }
+"ui.help" = { fg = "fg", bg = "bg0" }
 "ui.text" = "fg"
 "ui.text.focus" = "fg"
-"ui.menu" = { fg = "fg", bg = "bg3" }
+"ui.menu" = { fg = "fg", bg = "bg1" }
 "ui.menu.selected" = { fg = "bg0", bg = "green" }
 "ui.virtual.whitespace" = { fg = "bg4" }
 "ui.virtual.indent-guide" = { fg = "bg4" }
@@ -90,7 +90,7 @@
 
 [palette]
 
-bg0 = "#272e33"
+bg0 = "#171B1E"
 bg1 = "#2e383c"
 bg2 = "#374145"
 bg3 = "#414b50"
@@ -113,4 +113,3 @@ purple = "#d699b6"
 grey0 = "#7a8478"
 grey1 = "#859289"
 grey2 = "#9da9a0"
-
