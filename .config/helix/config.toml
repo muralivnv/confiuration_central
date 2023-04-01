@@ -13,10 +13,10 @@ insert = "bar"
 normal = "block"
 
 [editor.file-picker]
-hidden = false # do not ignore hidden
+hidden = true # ignore hidden
 
 [editor.lsp]
-auto-signature-help = false
+auto-signature-help = true
 
 # https://docs.helix-editor.com/keymap.html#select--extend-mode
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
