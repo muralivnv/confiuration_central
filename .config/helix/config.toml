@@ -27,20 +27,28 @@ auto-signature-help = true
 
 i         = "move_line_up"
 I         = "extend_line_up"
+"A-i"     = ["move_line_up"]
 "A-I"     = "extend_line_up"
 k         = "move_line_down"
 K         = "extend_line_down"
+"A-k"     = ["move_line_down"]
 "A-K"     = "extend_line_down"
+"A-j"     = ["move_prev_word_start", "collapse_selection"]
 j         = "move_prev_word_start"
 J         = "extend_prev_word_start"
 "A-J"     = "extend_prev_word_start"
+"A-l"     = ["move_next_word_start", "collapse_selection"]
 l         = "move_next_word_start"
 L         = "extend_next_long_word_start"
 "A-L"     = "extend_next_word_start"
+"A-u"     = "move_char_left"
 u         = "move_char_left"
 U         = "extend_char_left"
+"A-U"     = "extend_char_left"
 o         = "move_char_right"
+"A-o"     = "move_char_right"
 O         = "extend_char_right"
+"A-O"     = "extend_char_right"
 n         = "page_down"
 p         = "page_up"
 ">"       = "repeat_last_motion"
@@ -81,7 +89,6 @@ x         = "extend_line"
 
 [keys.insert]
 "A-e"     = "normal_mode"
-"A-h"     = "normal_mode"
 j         = { k = ["normal_mode"] }
 
 "A-i"     = ["move_line_up"]
@@ -93,12 +100,18 @@ j         = { k = ["normal_mode"] }
 "A-l"     = ["move_next_word_start", "collapse_selection"]
 "A-L"     = ["move_next_word_start", "normal_mode"]
 "A-u"     = "move_char_left"
+"A-U"     = "extend_char_left"
 "A-o"     = "move_char_right"
+"A-O"     = "extend_char_right"
 "A-."     = "repeat_last_motion"
 "A-n"     = "page_down"
 "A-p"     = "page_up"
 "A-,"     = ["goto_line_end", "move_char_right"]
 "A-;"     = ["goto_first_nonwhitespace"]
+"A-m"     = "no_op"
+"A-M"     = "no_op"
+"A-h"     = "no_op"
+"A-H"     = "no_op"
 
 C-z       = "undo"
 C-y       = "redo"
