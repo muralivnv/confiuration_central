@@ -1,4 +1,4 @@
-theme = "everforest_dark_hard"
+theme = "oceanic_next"
 
 [editor]
 middle-click-paste = false
@@ -7,6 +7,8 @@ true-color = true
 color-modes = true
 line-number = "relative"
 gutters = ["diagnostics", "spacer", "line-numbers", "spacer"]
+idle-timeout = 5
+completion-trigger-len = 1
 
 [editor.cursor-shape]
 insert = "bar"
@@ -17,6 +19,15 @@ hidden = true # ignore hidden
 
 [editor.lsp]
 auto-signature-help = true
+display-signature-help-docs = false
+snippets = false
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.whitespace.characters]
+tab = "→"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
 
 # https://docs.helix-editor.com/keymap.html#select--extend-mode
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
@@ -86,6 +97,7 @@ x         = "extend_line"
 "V"       = ["goto_first_nonwhitespace", "extend_to_line_end"]
 "b"       = "buffer_picker"
 "Z"       = { i = ["scroll_up"], k = ["scroll_down"] }
+"A-z"     = ":toggle-option soft-wrap.enable"
 
 [keys.insert]
 "A-e"     = "normal_mode"
@@ -123,6 +135,7 @@ C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
 "C-s"     = ["normal_mode", ":w"]
 "tab"     = ["normal_mode", "indent"]
 "S-tab"   = ["normal_mode", "unindent"]
+"A-z"     = ["normal_mode", ":toggle-option soft-wrap.enable", "insert_mode"]
 
 [keys.select]
 ","         = "goto_line_end"
