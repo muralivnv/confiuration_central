@@ -19,7 +19,6 @@ hidden = true # ignore hidden
 
 [editor.lsp]
 auto-signature-help = true
-display-signature-help-docs = false
 snippets = false
 
 [editor.whitespace.render]
@@ -33,7 +32,7 @@ tabpad = "·" # Tabs will look like "→···" (depending on tab width)
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
 [keys.normal]
 "A-e"     = "insert_mode"
-"h"       = "insert_mode"
+"h"       = "no_op"
 "ret"     = ["insert_newline", "normal_mode"]
 
 i         = "move_line_up"
@@ -71,7 +70,6 @@ backspace = "delete_char_backward"
 g         = { t = "goto_file_start", b = "goto_last_line", i = "hover" }
 "["       = { "[" = "jump_backward" }
 "]"       = { "]" = "jump_forward"  }
-e = { n = "goto_next_buffer", p = "goto_previous_buffer", j = "jump_view_left", l = "jump_view_right", i = "jump_view_up", k = "jump_view_down", x = ":bc", X = "wclose", J = "swap_view_left", L = "swap_view_right", I = "swap_view_up", K = "swap_view_down", q = [":bc", "wclose"] }
 "space" = { "space" = "last_picker" }
 "\\"    = "vsplit"
 "|"     = "hsplit"
@@ -98,6 +96,21 @@ x         = "extend_line"
 "b"       = "buffer_picker"
 "Z"       = { i = ["scroll_up"], k = ["scroll_down"] }
 "A-z"     = ":toggle-option soft-wrap.enable"
+
+[keys.normal.e]
+n = "goto_next_buffer"
+p = "goto_previous_buffer"
+j = "jump_view_left"
+l = "jump_view_right"
+i = "jump_view_up"
+k = "jump_view_down"
+x = ":bc"
+X = "wclose"
+J = "swap_view_left"
+L = "swap_view_right"
+I = "swap_view_up"
+K = "swap_view_down"
+q = [":bc", "wclose"]
 
 [keys.insert]
 "A-e"     = "normal_mode"
