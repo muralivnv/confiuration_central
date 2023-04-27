@@ -31,8 +31,8 @@ tabpad = "·" # Tabs will look like "→···" (depending on tab width)
 # https://docs.helix-editor.com/keymap.html#select--extend-mode
 # https://github.com/helix-editor/helix/blob/b58899bc8e0f339fd83a1740a896fcc62976f7a7/helix-term/src/commands.rs#L197
 [keys.normal]
-"A-e"     = "insert_mode"
-"h"       = "insert_mode"
+"A-e"     = ["collapse_selection", "insert_mode"]
+"h"       = ["collapse_selection", "insert_mode"]
 "ret"     = ["insert_newline", "normal_mode"]
 
 i         = "move_line_up"
