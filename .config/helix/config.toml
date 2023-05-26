@@ -1,4 +1,4 @@
-theme = "oceanic_next"
+theme = "gruvbox_original_dark_medium"
 
 [editor]
 middle-click-paste = false
