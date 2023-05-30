@@ -1,8 +1,8 @@
-"attribute"                 = { fg = "blue"                                                     }
+"attribute"                 = { fg = "white"                                                     }
 "comment"                   = { fg = "light-gray"                                               }
-"constant"                  = { fg = "forest_green"                                             }
-"constant.numeric"          = { fg = "forest_green"                                             }
-"constant.builtin"          = { fg = "forest_green"                                             }
+"constant"                  = { fg = "green"                                             }
+"constant.numeric"          = { fg = "green"                                             }
+"constant.builtin"          = { fg = "green"                                             }
 "constant.character.escape" = { fg = "moss_green"                                               }
 "constructor"               = { fg = "blue"                                                     }
 "function"                  = { fg = "blue"                                                     }
@@ -15,14 +15,14 @@
 "keyword.directive"         = { fg = "red"                                                      }
 "label"                     = { fg = "red"                                                      }
 "namespace"                 = { fg = "red"                                                      }
-"operator"                  = { fg = "cyan"                                                     }
-"keyword.operator"          = { fg = "cyan"                                                     }
+"operator"                  = { fg = "white"                                                     }
+"keyword.operator"          = { fg = "white"                                                     }
 "special"                   = { fg = "blue"                                                     }
 "string"                    = { fg = "green"                                                    }
 "type"                      = { fg = "white" , modifiers = ["bold"]                             }
 "variable.builtin"          = { fg = "red"                                                      }
 "variable.parameter"        = { fg = "white"                                                    }
-"variable.other.member"     = { fg = "blue"                                                     }
+"variable.other.member"     = { fg = "white"                                                     }
 "variable.other.enummember" = { fg = "red"                                                      }
 "variable"                  = { fg = "white"                                                    }
 "punctuation"               = { fg = "cyan"                                                     }
@@ -34,7 +34,7 @@
 "markup.bold"               = { fg = "gold", modifiers = ["bold"]                               }
 "markup.italic"             = { fg = "purple", modifiers = ["italic"]                           }
 "markup.list"               = { fg = "moss_green"                                               }
-"markup.quote"              = { fg = "forest_green"                                             }
+"markup.quote"              = { fg = "green"                                             }
 "markup.link.url"           = { fg = "blue", modifiers = ["underlined"]                         }
 "markup.link.text"          = { fg = "white"                                                    }
 "markup.link.label"         = { fg = "white"                                                    }
@@ -50,10 +50,6 @@
 "error"                     = { fg = "red"                                                      }
 
 "ui.background"             = { bg = "dark"                                                     }
-#"ui.virtual"                = { fg = "faint-gray"                                              }
-#"ui.virtual.indent-guide"   = { fg = "faint-gray"                                              }
-#"ui.virtual.whitespace"     = { fg = "light-gray"                                              }
-#ui.virtual.ruler"          = { bg = "gray"                                                     }
 
 "ui.cursor"                 = { fg = "white", modifiers = ["reversed"]                          }
 "ui.cursor.primary"         = { fg = "white", modifiers = ["reversed"]                          }
@@ -68,7 +64,7 @@
 
 "ui.statusline"             = { fg = "white", bg = "#313131"                                    }
 "ui.statusline.inactive"    = { fg = "#808080", bg = "#242424"                                  }
-"ui.statusline.normal"      = { fg = "dark", bg = "forest_green"                                }
+"ui.statusline.normal"      = { fg = "dark", bg = "green"                                }
 "ui.statusline.insert"      = { fg = "dark", bg = "yellow"                                      }
 "ui.statusline.select"      = { fg = "dark", bg = "blue"                                        }
 
@@ -84,17 +80,13 @@
 
 [palette]
 
-blue         = "#6699cc"
-red          = "#e4767b"
-green        = "#97bc62"
-cyan         = "#5fb3b3"
+blue         = "#64B2FF"
+red          = "#FF7364"
+green        = "#B8F26D"
+cyan         = "#5FF2F2"
 white        = "#d4d4d4"
 dark         = "#252524"
-forest_green = "#97bc62"
 moss_green   = "#58865a"
 black        = "#16181a"
-gray         = "#252d30"
-faint-gray   = "#abb2bf"
 light-gray   = "#636c6e"
 gold         = "#d19a66"
-orange       = "#F99157"
