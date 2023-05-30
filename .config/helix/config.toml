@@ -1,4 +1,4 @@
-theme = "gruvbox_original_dark_medium"
+theme = "minimal"
 
 [editor]
 middle-click-paste = false
