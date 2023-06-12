@@ -2,7 +2,7 @@
 
 # imports
 import subprocess
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import sys
 
 # constants
@@ -31,7 +31,7 @@ def trigger(parsed_args) -> None:
             print(e)
 
 if __name__ == "__main__":
-    cli = ArgumentParser()
+    cli = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     cli.add_argument("-c", "--rg-opt", type=str, help="ripgrep options", dest="rg_opt", default="-S -w", required=False)
     cli.add_argument("-ni", "--no-interactive", action="store_true", dest="no_interactive")
     cli.add_argument("-q", "--query", type=str, required=True, dest="query", help="pattern to search")
