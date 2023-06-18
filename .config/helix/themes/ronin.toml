@@ -4,9 +4,9 @@
 "constant.numeric"          = { fg = "green"                                             }
 "constant.builtin"          = { fg = "green"                                             }
 "constant.character.escape" = { fg = "moss_green"                                               }
-"constructor"               = { fg = "blue"                                                     }
-"function"                  = { fg = "blue"                                                     }
-"function.builtin"          = { fg = "blue"                                                     }
+"constructor"               = { fg = "brown"                                                     }
+"function"                  = { fg = "brown"                                                     }
+"function.builtin"          = { fg = "brown"                                                     }
 "function.macro"            = { fg = "red"                                                      }
 "preproc_ifdef"             = { fg = "red"                                                      }
 "keyword"                   = { fg = "red"                                                      }
@@ -17,16 +17,16 @@
 "namespace"                 = { fg = "red"                                                      }
 "operator"                  = { fg = "white"                                                     }
 "keyword.operator"          = { fg = "white"                                                     }
-"special"                   = { fg = "blue"                                                     }
+"special"                   = { fg = "brown"                                                     }
 "string"                    = { fg = "green"                                                    }
-"type"                      = { fg = "white" , modifiers = ["bold"]                             }
+"type"                      = { fg = "cyan", modifiers = ["bold"]                                                  }
 "variable.builtin"          = { fg = "red"                                                      }
 "variable.parameter"        = { fg = "white"                                                    }
 "variable.other.member"     = { fg = "white"                                                     }
 "variable.other.enummember" = { fg = "red"                                                      }
 "variable"                  = { fg = "white"                                                    }
-"punctuation"               = { fg = "cyan"                                                     }
-"punctuation.special"       = { fg = "cyan"                                                     }
+"punctuation"               = { fg = "white"                                                     }
+"punctuation.special"       = { fg = "white"                                                     }
 
 "markup.heading"            = { fg = "red"                                                      }
 "markup.raw.inline"         = { fg = "green"                                                    }
@@ -35,7 +35,7 @@
 "markup.italic"             = { fg = "purple", modifiers = ["italic"]                           }
 "markup.list"               = { fg = "moss_green"                                               }
 "markup.quote"              = { fg = "green"                                             }
-"markup.link.url"           = { fg = "blue", modifiers = ["underlined"]                         }
+"markup.link.url"           = { fg = "brown", modifiers = ["underlined"]                         }
 "markup.link.text"          = { fg = "white"                                                    }
 "markup.link.label"         = { fg = "white"                                                    }
 
@@ -43,7 +43,7 @@
 "diff.delta"                = "gold"
 "diff.minus"                = "red"
 
-"info"                      = { fg = "cyan"                                                     }
+"info"                      = { fg = "white"                                                     }
 "hint"                      = { fg = "green"                                                    }
 "diagnostic"                = { modifiers = ["bold"]                                            }
 "warning"                   = { fg = "yellow"                                                   }
@@ -66,26 +66,25 @@
 "ui.statusline.inactive"    = { fg = "#808080", bg = "#242424"                                  }
 "ui.statusline.normal"      = { fg = "dark", bg = "green"                                }
 "ui.statusline.insert"      = { fg = "dark", bg = "yellow"                                      }
-"ui.statusline.select"      = { fg = "dark", bg = "blue"                                        }
+"ui.statusline.select"      = { fg = "dark", bg = "brown"                                        }
 
 "ui.text"                   = { fg = "white"                                                    }
 "ui.text.focus"             = { fg = "white", bg = "#404040"                                    }
 
 "ui.help"                   = { fg = "white", bg = "#282928"                                    }
 "ui.popup"                  = { bg = "#282928"                                                  }
-"ui.window"                 = { fg = "cyan"                                                     }
+"ui.window"                 = { fg = "white"                                                     }
 "ui.menu"                   = { fg = "white", bg = "#282928"                                    }
 "ui.menu.selected"          = { fg = "black", bg = "red"                                        }
 "ui.menu.scroll"            = { fg = "white", bg = "#474b43a4"                                  }
 
 [palette]
-
-blue         = "#64B2FF"
+brown        = "#F78F34"
 red          = "#FF7364"
-green        = "#B8F26D"
-cyan         = "#5FF2F2"
+green        = "#8ec87c"
+cyan         = "#80AFB0"
 white        = "#d4d4d4"
-dark         = "#252524"
+dark         = "#252525"
 moss_green   = "#58865a"
 black        = "#16181a"
 light-gray   = "#636c6e"
