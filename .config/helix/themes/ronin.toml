@@ -15,8 +15,8 @@
 "keyword.directive"         = { fg = "red"                                                      }
 "label"                     = { fg = "red"                                                      }
 "namespace"                 = { fg = "red"                                                      }
-"operator"                  = { fg = "white"                                                     }
-"keyword.operator"          = { fg = "white"                                                     }
+"operator"                  = { fg = "cyan"                                                     }
+"keyword.operator"          = { fg = "cyan"                                                     }
 "special"                   = { fg = "brown"                                                     }
 "string"                    = { fg = "green"                                                    }
 "type"                      = { fg = "cyan", modifiers = ["bold"]                                                  }
