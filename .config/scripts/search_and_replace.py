@@ -66,6 +66,4 @@ SED:
     """, required=False)
 
     parsed_args = cli.parse_args()
-    print(parsed_args)
-
     trigger(parsed_args)
