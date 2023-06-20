@@ -5,11 +5,6 @@ import subprocess
 from argparse import ArgumentParser, RawTextHelpFormatter
 import sys
 
-# constants
-INTERACTIVE_CMD = 'grep -l {GREP_FLAGS} {QUERY} | fzf --sort --reverse --preview="grep -n --color=always -C 2 {GREP_FLAGS} {QUERY} {}" --preview-window="up,70%:wrap" --ansi --bind="enter:execute(sed {SED_CMD} {}),shift-tab:up,tab:down" --cycle'
-NONINTERACTIVE_CMD = "grep -l {GREP_FLAGS} {QUERY} | xargs -I @ sh -c 'sed {SED_CMD} @'"
-FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
-
 ##### HELPFUL GIST
 GIST = """
 GREP: https://www.man7.org/linux/man-pages/man1/grep.1.html
@@ -20,6 +15,7 @@ GREP: https://www.man7.org/linux/man-pages/man1/grep.1.html
     --include \*.ext : match files with this extension
     -w               : match whole word
     -E               : extended regexp
+    -r               : recursive
 
 SED: https://www.gnu.org/software/sed/manual/sed.html
     -i    : in-place replace
@@ -53,6 +49,11 @@ SED: https://www.gnu.org/software/sed/manual/sed.html
 Combining Multiple Files Using SED:
     sed '$ s/$//' FILE1 FILE2 FILE3 ... > OUTFILE
 """
+# constants
+INTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | fzf --sort --reverse --preview='grep -n --color=always -C 2 {GREP_FLAGS} "{QUERY}" {}' --preview-window='up,70%:wrap' --ansi --bind="enter:execute(sed {SED_CMD} {}),shift-tab:up,tab:down" --cycle"""
+NONINTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | xargs -I {} sh -c "sed {SED_CMD} {}" """
+FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
+
 #####
 def trigger(parsed_args) -> None:
     full_cmd = None
