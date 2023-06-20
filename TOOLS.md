@@ -1,6 +1,3 @@
-- https://github.com/BurntSushi/ripgrep
-> `sudo apt-get install ripgrep`
-
 - https://github.com/ajeetdsouza/zoxide/releases
 > `zoxide-x.x.x-x86_64-unknown-linux-musl.tar.gz` and store it under `$HOME/.local/bin`
 
@@ -12,4 +9,3 @@
 
 - https://github.com/helix-editor/helix/releases
 > `helix-22.12-aarch64.AppImage` and store it under `$HOME/.local/bin`
-
