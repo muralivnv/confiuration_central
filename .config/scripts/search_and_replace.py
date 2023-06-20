@@ -45,10 +45,20 @@ SED: https://www.gnu.org/software/sed/manual/sed.html
        a\TEXT  : append text after line
        p       : print
        d       : delete
+       q       : quit
 
+   \\u : turn next char to upper
+   \\U : turn next replacement to upper case
+   \\l : turn next char to lower
+   \\L : turn next replacement to lower case
+   \\E : end conversion started by above
+
+   If we wrap search items inside () then we can use \\number (0 to 9)
+   sar -q "(\w*)\s*([:=])\s*(true|[0-9]{4})" --sed "'s/{QUERY}/\\U\\1 \E\\u\\2\E \\3/g'"
 Combining Multiple Files Using SED:
     sed '$ s/$//' FILE1 FILE2 FILE3 ... > OUTFILE
 """
+
 # constants
 INTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | fzf --sort --reverse --preview='grep -n --color=always -C 2 {GREP_FLAGS} "{QUERY}" {}' --preview-window='up,70%:wrap' --ansi --bind="enter:execute(sed {SED_CMD} {}),shift-tab:up,tab:down" --cycle"""
 NONINTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | xargs -I {} sh -c "sed {SED_CMD} {}" """
