@@ -27,6 +27,8 @@ SED: https://www.gnu.org/software/sed/manual/sed.html
        #,{{#}}  : only match these lines
          $      : to final line
        /REGEXP/ : Any regexp
+       /REGEXP/,/REGEXP/ : range using regexp
+
       OPTIONS
         # : number to match and replace every nth match in line
         g : match and replace all
@@ -38,6 +40,7 @@ SED: https://www.gnu.org/software/sed/manual/sed.html
        #,{{#}}  : only match these lines
          $      : to final line
        /REGEXP/ : Any regexp
+       /REGEXP/,/REGEXP/ : range using regexp
 
       [X]
        i\TEXT  : insert text before line
