@@ -68,7 +68,9 @@ FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
 def trigger(parsed_args) -> None:
     full_cmd = None
     SED_CMD = parsed_args.SED_CMD.replace("{QUERY}", parsed_args.QUERY)
+    SED_CMD = SED_CMD.replace("{Q}", parsed_args.QUERY) # short-form
     SED_CMD = SED_CMD.replace("{REPLACE}", parsed_args.REPLACE)
+    SED_CMD = SED_CMD.replace("{R}", parsed_args.REPLACE) # short-form
     if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD.replace("{GREP_FLAGS}", parsed_args.GREP_FLAGS)
         full_cmd = full_cmd.replace("{QUERY}", parsed_args.QUERY)
@@ -86,11 +88,11 @@ def trigger(parsed_args) -> None:
 if __name__ == "__main__":
     cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
 
-    cli.add_argument("--grep", type=str, dest="GREP_FLAGS", default="-r -w", help="-r -w", required=False)
-    cli.add_argument("--sed", type=str, dest="SED_CMD", default='-i "s/{QUERY}/{REPLACE}/g"', help='-i "s/{QUERY}/{REPLACE}/g"', required=False)
+    cli.add_argument("-G", type=str, dest="GREP_FLAGS", default="-r -w", help="-r -w", required=False)
+    cli.add_argument("-S", type=str, dest="SED_CMD", default='-i "s/{QUERY}/{REPLACE}/g"', help='-i "s/{QUERY}/{REPLACE}/g"', required=False)
 
-    cli.add_argument("-q", type=str, dest="QUERY", help="QUERY", required= not "--gist" in sys.argv)
-    cli.add_argument("-r", type=str, dest="REPLACE", default="", help="REPLACE", required=False)
+    cli.add_argument("-Q", type=str, dest="QUERY", help="QUERY", required= not "--gist" in sys.argv)
+    cli.add_argument("-R", type=str, dest="REPLACE", default="", help="REPLACE", required=False)
 
     cli.add_argument("-ni", action="store_true", dest="no_interactive", help="no interaction")
     cli.add_argument("--gist", action="store_true", dest="show_gist", help="show some gist", required=False)
