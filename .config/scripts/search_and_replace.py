@@ -91,14 +91,14 @@ def trigger(parsed_args) -> None:
 if __name__ == "__main__":
     cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
 
-    cli.add_argument("-G", type=str, dest="GREP_FLAGS", default="-r -w", help="-r -w", required=False)
-    cli.add_argument("-S", type=str, dest="SED_CMD", default='-i "s/{QUERY}/{REPLACE}/g"', help='-i "s/{QUERY}/{REPLACE}/g"', required=False)
+    cli.add_argument("-G", "-g", type=str, dest="GREP_FLAGS", default="-r -w", help="-r -w", required=False)
+    cli.add_argument("-S", "-s", type=str, dest="SED_CMD", default="-i 's/{QUERY}/{REPLACE}/g'", help="-i 's/{QUERY}|{Q}/{REPLACE}|{R}/g'", required=False)
 
-    cli.add_argument("-Q", type=str, dest="QUERY", help="QUERY", required= not "--gist" in sys.argv)
-    cli.add_argument("-R", type=str, dest="REPLACE", default="", help="REPLACE", required=False)
+    cli.add_argument("-Q", "-q", type=str, dest="QUERY", required= not (("--gist" in sys.argv) or ("--man" in sys.argv)) )
+    cli.add_argument("-R", "-r", type=str, dest="REPLACE", default="", required=False)
 
     cli.add_argument("-ni", action="store_true", dest="no_interactive", help="no interaction")
-    cli.add_argument("--gist", action="store_true", dest="show_gist", help="show some gist", required=False)
+    cli.add_argument("--gist", "--man", action="store_true", dest="show_gist", help="show some gist", required=False)
 
     parsed_args = cli.parse_args()
     if parsed_args.show_gist:
