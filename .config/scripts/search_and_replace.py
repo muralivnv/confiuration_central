@@ -67,29 +67,35 @@ Combining Multiple Files Using SED:
 INTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | fzf --sort --color hl:221,hl+:74 --scrollbar=▌▐ --reverse --preview='grep -n --color=always -C 2 {GREP_FLAGS} "{QUERY}" {}' --preview-window='up,70%:wrap' --ansi --bind="enter:execute(sed {SED_CMD} {})+refresh-preview,shift-tab:up,tab:down" --cycle"""
 NONINTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | xargs -I {} sh -c "sed {SED_CMD} {}" """
 FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
-GREP_DEFAULTS = "-r -w --exclude-dir=\.* --exclude-dir=*build*"
-SED_DEFAULTS  = "-i 's/{QUERY}/{REPLACE}/g'"
+GREP_DEFAULTS = "-r --exclude-dir=\.* --exclude-dir=*build*"
+SED_DEFAULTS  = "-i"
 
 #####
 def trigger(parsed_args) -> None:
+    query = parsed_args.QUERY
+    if parsed_args.match_whole_word_only:
+        query = "\<" + query
+        query = query + "\>"
+
+    grep_flags = parsed_args.GREP_FLAGS
+    if not (parsed_args.ADDITIONAL_GREP_FLAGS is None):
+        grep_flags = f"{grep_flags} {parsed_args.ADDITIONAL_GREP_FLAGS}"
+
+    sed_flags = parsed_args.SED_FLAGS
+    if not (parsed_args.ADDITIONAL_SED_FLAGS is None):
+        sed_flags = f"{sed_flags} {parsed_args.ADDITIONAL_SED_FLAGS}"
+
     full_cmd = INTERACTIVE_CMD
     if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD
 
-    sed_cmd = parsed_args.SED_CMD.replace("{QUERY}", parsed_args.QUERY)
-    sed_cmd = sed_cmd.replace("{Q}", parsed_args.QUERY) # short-form
-    sed_cmd = sed_cmd.replace("{REPLACE}", parsed_args.REPLACE)
-    sed_cmd = sed_cmd.replace("{R}", parsed_args.REPLACE) # short-form
-    sed_cmd = sed_cmd.replace("{DEFAULT}", SED_DEFAULTS)
-    sed_cmd = sed_cmd.replace("{D}", SED_DEFAULTS) # short-form
+    sed_cmd = sed_flags
+    sed_cmd = sed_cmd.replace("{QUERY}"  , query)
+    sed_cmd = sed_cmd.replace("{Q}"      , query) # short-form
 
-    grep_cmd = parsed_args.GREP_FLAGS
-    grep_cmd = grep_cmd.replace("{DEFAULT}", GREP_DEFAULTS)
-    grep_cmd = grep_cmd.replace("{D}", GREP_DEFAULTS) # short-form
-
-    full_cmd = full_cmd.replace("{GREP_FLAGS}", grep_cmd)
-    full_cmd = full_cmd.replace("{SED_CMD}", sed_cmd)
-    full_cmd = full_cmd.replace("{QUERY}", parsed_args.QUERY)
+    full_cmd = full_cmd.replace("{GREP_FLAGS}", grep_flags)
+    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_cmd)
+    full_cmd = full_cmd.replace("{QUERY}"     , query)
 
     try:
         subprocess.check_call(full_cmd, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
@@ -100,13 +106,16 @@ def trigger(parsed_args) -> None:
 if __name__ == "__main__":
     cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
     cli.add_argument("-g", "--grep", type=str, dest="GREP_FLAGS", default=GREP_DEFAULTS, help=GREP_DEFAULTS, required=False)
-    cli.add_argument("-s", "--sed", type=str, dest="SED_CMD", default=SED_DEFAULTS, help=SED_DEFAULTS, required=False)
+    cli.add_argument("-g+", "--grep+", type=str, dest="ADDITIONAL_GREP_FLAGS", required=False)
+
+    cli.add_argument("-s", "--sed", type=str, dest="SED_FLAGS", default=SED_DEFAULTS, help=SED_DEFAULTS, required=False)
+    cli.add_argument("-s+", "--sed+", type=str, dest="ADDITIONAL_SED_FLAGS", required=False)
 
     cli.add_argument("-ni", action="store_true", dest="no_interactive", help="no interaction")
+    cli.add_argument("-w", action="store_true", dest="match_whole_word_only", help="don't restrict match to whole words")
     cli.add_argument("--gist", "--man", action="store_true", dest="show_gist", help="show some gist", required=False)
 
     cli.add_argument("QUERY", type=str, nargs="?", default="")
-    cli.add_argument("REPLACE", type=str, nargs="?", default="")
 
     parsed_args = cli.parse_args()
     if parsed_args.show_gist:
