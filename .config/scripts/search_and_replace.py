@@ -4,6 +4,7 @@
 import subprocess
 from argparse import ArgumentParser, RawTextHelpFormatter
 import sys
+from typing import List
 
 ##### HELPFUL GIST
 GIST = """
@@ -89,19 +90,29 @@ def trigger(parsed_args) -> None:
     if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD
 
-    sed_cmd = sed_flags
-    sed_cmd = sed_cmd.replace("{QUERY}"  , query)
-    sed_cmd = sed_cmd.replace("{Q}"      , query) # short-form
-
     full_cmd = full_cmd.replace("{GREP_FLAGS}", grep_flags)
-    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_cmd)
+    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_flags)
     full_cmd = full_cmd.replace("{QUERY}"     , query)
-
+    full_cmd = full_cmd.replace("{Q}"         , query) # short-form
     try:
         subprocess.check_call(full_cmd, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         if not (e.returncode in FZF_ERR_CODE_TO_IGNORE):
             print(e)
+
+def prepend_space_to_args(args: List[str]):
+    flags_of_interest = ["-g", "--grep", "-g+", "--grep+", "-s", "--sed",
+                         "-s+", "--sed+"]
+
+    prepend_space_to_next_arg = False
+    for i, arg in enumerate(args):
+        if prepend_space_to_next_arg:
+            if (not args[i].startswith(' ')) and (not args[i].endswith(' ')):
+                args[i] = f" {args[i]}"
+            prepend_space_to_next_arg = False
+        elif arg in flags_of_interest:
+            prepend_space_to_next_arg = True
+    return args
 
 if __name__ == "__main__":
     cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
@@ -117,7 +128,8 @@ if __name__ == "__main__":
 
     cli.add_argument("QUERY", type=str, nargs="?", default="")
 
-    parsed_args = cli.parse_args()
+    args = prepend_space_to_args(sys.argv[1:])
+    parsed_args = cli.parse_args(args)
     if parsed_args.show_gist:
         cli.print_help()
         print(GIST)
