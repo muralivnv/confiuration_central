@@ -72,6 +72,35 @@ GREP_DEFAULTS = "-r --exclude-dir=\.* --exclude-dir=*build*"
 SED_DEFAULTS  = "-i"
 
 #####
+class ArgGroup:
+    def __init__(self):
+        self.start = None
+        self.len   = None
+        self.is_initialized = False
+
+    def init(self, i : int):
+        self.start = i + 1
+        self.len   = 0
+        self.is_initialized = True
+
+    def inc(self):
+        if self.is_initialized:
+            self.len += 1
+
+    def reset(self):
+        self.start = None
+        self.len = None
+        self.is_initialized = False
+
+    def require_grouping(self):
+        return self.is_initialized
+
+    def group(self, args: List[str]):
+        grouped_args = ' '.join(args[self.start:self.start + self.len])
+        if (not grouped_args.startswith(' ')) and (not grouped_args.endswith(' ')):
+            grouped_args = f" {grouped_args}"
+        return grouped_args
+
 def trigger(parsed_args) -> None:
     query = parsed_args.QUERY
     if parsed_args.match_whole_word_only:
@@ -81,6 +110,8 @@ def trigger(parsed_args) -> None:
     grep_flags = parsed_args.GREP_FLAGS
     if not (parsed_args.ADDITIONAL_GREP_FLAGS is None):
         grep_flags = f"{grep_flags} {parsed_args.ADDITIONAL_GREP_FLAGS}"
+    if parsed_args.match_whole_word_only:
+        grep_flags = f"{grep_flags} -w"
 
     sed_flags = parsed_args.SED_FLAGS
     if not (parsed_args.ADDITIONAL_SED_FLAGS is None):
@@ -100,19 +131,37 @@ def trigger(parsed_args) -> None:
         if not (e.returncode in FZF_ERR_CODE_TO_IGNORE):
             print(e)
 
-def prepend_space_to_args(args: List[str]):
+def group_args(args: List[str]):
     flags_of_interest = ["-g", "--grep", "-g+", "--grep+", "-s", "--sed",
                          "-s+", "--sed+"]
+    flags_of_not_interest = ["-w", "-ni", "--gist", "--man"]
 
-    prepend_space_to_next_arg = False
+    arg_grouper = ArgGroup()
+    new_args = []
+
     for i, arg in enumerate(args):
-        if prepend_space_to_next_arg:
-            if (not args[i].startswith(' ')) and (not args[i].endswith(' ')):
-                args[i] = f" {args[i]}"
-            prepend_space_to_next_arg = False
+        if arg in flags_of_not_interest:
+            if arg_grouper.require_grouping():
+                new_args.append(arg_grouper.group(args))
+                arg_grouper.reset()
+
+            new_args.append(arg)
         elif arg in flags_of_interest:
-            prepend_space_to_next_arg = True
-    return args
+            if arg_grouper.require_grouping():
+                new_args.append(arg_grouper.group(args))
+                arg_grouper.reset()
+
+            new_args.append(arg)
+            arg_grouper.init(i)
+        else:
+            if arg_grouper.is_initialized:
+                arg_grouper.inc()
+            else:
+                new_args.append(arg)
+
+    if arg_grouper.require_grouping():
+        new_args.append(arg_grouper.group(args))
+    return new_args
 
 if __name__ == "__main__":
     cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
@@ -128,7 +177,7 @@ if __name__ == "__main__":
 
     cli.add_argument("QUERY", type=str, nargs="?", default="")
 
-    args = prepend_space_to_args(sys.argv[1:])
+    args = group_args(sys.argv[1:])
     parsed_args = cli.parse_args(args)
     if parsed_args.show_gist:
         cli.print_help()
