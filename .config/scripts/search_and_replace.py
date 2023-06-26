@@ -66,18 +66,14 @@ Combining Multiple Files Using SED:
 """
 
 # constants
-GREP_CMD = """grep -l -m1 {GREP_FLAGS} "{QUERY}" """
-
-INTERACTIVE_CMD = """fzf --sort --color hl:221,hl+:74 --scrollbar=▌▐ --reverse --preview='sed {SED_CMD} {} > {}.SAR_OUT && git diff --color {} {}.SAR_OUT | tail -n +5' --preview-window='up,70%:wrap' --ansi --bind='enter:execute(mv {}.SAR_OUT {})+refresh-preview,shift-tab:up,tab:down' --cycle"""
-
+INTERACTIVE_CMD = """fzf --sort --color hl:221,hl+:74 --scrollbar=▌▐ --reverse --preview='sed {SED_CMD} {} > {}.SAR_OUT && diff -u --color=always {} {}.SAR_OUT | tail -n +3' --preview-window='up,70%:wrap' --ansi --bind='enter:execute(mv {}.SAR_OUT {})+refresh-preview,shift-tab:up,tab:down' --cycle"""
 NONINTERACTIVE_CMD = """xargs -I {} sh -c 'sed -i {SED_CMD} {}' """
-
 FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
-GREP_DEFAULTS = ["-l", "-m1", "-r", "--exclude-dir=\.*", "--exclude-dir=*build*", "--exclude=*\.SAR_OUT"]
+GREP_DEFAULTS          = ["-l", "-r", "--exclude-dir=\.*", "--exclude-dir=*build*", "--exclude=*\.SAR_OUT"]
 
 #####
 def wrap_in_word_boundary(text: str)->str:
-    return "\<" + text + "\>"
+    return "\<(" + text + ")\>"
 
 def prepare_grep_cmd(grep_flags: List[str], query: str) -> List[str]:
     new_grep_flags = []
@@ -109,10 +105,7 @@ def trigger(parsed_args) -> None:
     if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD
 
-    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_cmd)
-    full_cmd = full_cmd.replace("{QUERY}"     , parsed_args.QUERY)
-    full_cmd = full_cmd.replace("{Q}"         , parsed_args.QUERY) # short-form
-
+    full_cmd = full_cmd.replace("{SED_CMD}", sed_cmd)
     query_files: List[str] = []
     try:
         # get list of files that query exists using GREP
@@ -141,6 +134,7 @@ def trigger(parsed_args) -> None:
     except Exception as e:
         print(e)
 
+    # delete temporary files
     if any(query_files):
         for file in query_files:
             if os.path.exists(f"{file}.SAR_OUT"):
