@@ -63,7 +63,7 @@
 "ui.linenr.selected"        = { fg = "white"                                   }
 
 "ui.statusline"             = { fg = "white", bg = "#313131"                   }
-"ui.statusline.inactive"    = { fg = "#808080", bg = "#242424"                 }
+"ui.statusline.inactive"    = { fg = "white", bg = "#313131"                 }
 "ui.statusline.normal"      = { fg = "dark", bg = "green"                      }
 "ui.statusline.insert"      = { fg = "dark", bg = "yellow"                     }
 "ui.statusline.select"      = { fg = "dark", bg = "brown"                      }
