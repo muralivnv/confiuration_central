@@ -65,47 +65,67 @@ Combining Multiple Files Using SED:
 """
 
 # constants
-INTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | fzf --sort --color hl:221,hl+:74 --scrollbar=▌▐ --reverse --preview='grep -n --color=always -C 2 {GREP_FLAGS} "{QUERY}" {}' --preview-window='up,70%:wrap' --ansi --bind="enter:execute(sed {SED_CMD} {})+refresh-preview,shift-tab:up,tab:down" --cycle"""
-NONINTERACTIVE_CMD = """grep -l {GREP_FLAGS} "{QUERY}" | xargs -I {} sh -c "sed {SED_CMD} {}" """
+INTERACTIVE_CMD = """grep -l -m1 {GREP_FLAGS} "{QUERY}" | fzf --sort --color hl:221,hl+:74 --scrollbar=▌▐ --reverse --preview='grep -n --color=always -C2 --group-separator=" --- " {GREP_FLAGS} "{QUERY}" {}' --preview-window='up,70%:wrap' --ansi --bind="enter:execute(sed {SED_CMD} {})+refresh-preview,shift-tab:up,tab:down" --cycle"""
+NONINTERACTIVE_CMD = """grep -l -m1 {GREP_FLAGS} "{QUERY}" | xargs -I {} sh -c "sed {SED_CMD} {}" """
 FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
 GREP_DEFAULTS = "-r --exclude-dir=\.* --exclude-dir=*build*"
 SED_DEFAULTS  = "-i"
 
 #####
 class ArgGroup:
-    def __init__(self):
-        self.start = None
-        self.len   = None
-        self.is_initialized = False
+    def __init__(self) -> None:
+        self.start: int = 0
+        self.len: int   = 0
+        self.is_initialized : bool = False
 
-    def init(self, i : int):
+    def init(self, i : int) -> None:
         self.start = i + 1
         self.len   = 0
         self.is_initialized = True
 
-    def inc(self):
+    def inc(self) -> None:
         if self.is_initialized:
             self.len += 1
 
-    def reset(self):
-        self.start = None
-        self.len = None
+    def reset(self) -> None:
+        self.start = 0
+        self.len = 0
         self.is_initialized = False
 
-    def require_grouping(self):
+    def require_grouping(self) -> bool:
         return self.is_initialized
 
-    def group(self, args: List[str]):
+    def group(self, args: List[str]) -> str:
         grouped_args = ' '.join(args[self.start:self.start + self.len])
         if (not grouped_args.startswith(' ')) and (not grouped_args.endswith(' ')):
             grouped_args = f" {grouped_args}"
         return grouped_args
 
+def wrap_in_word_boundary(text: str)->str:
+    return "\<" + text + "\>"
+
+def perform_dry_run(grep_flags, sed_cmd, query)-> bool:
+    # remove '-i' from sed_cmd
+    sed_cmd_no_inplace = sed_cmd.replace("-i", "")
+
+    full_cmd = NONINTERACTIVE_CMD
+    full_cmd = full_cmd.replace("{GREP_FLAGS}", grep_flags)
+    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_cmd_no_inplace)
+    full_cmd = full_cmd.replace("{QUERY}"     , query)
+    full_cmd = full_cmd.replace("{Q}"         , query) # short-form
+
+    try:
+        subprocess.check_call(full_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        print(e)
+        return False
+    return True
+
 def trigger(parsed_args) -> None:
-    query = parsed_args.QUERY
+    # assemble grep and sed commands
+    sed_query = parsed_args.QUERY
     if parsed_args.match_whole_word_only:
-        query = "\<" + query
-        query = query + "\>"
+        sed_query = wrap_in_word_boundary(sed_query)
 
     grep_flags = parsed_args.GREP_FLAGS
     if not (parsed_args.ADDITIONAL_GREP_FLAGS is None):
@@ -117,14 +137,21 @@ def trigger(parsed_args) -> None:
     if not (parsed_args.ADDITIONAL_SED_FLAGS is None):
         sed_flags = f"{sed_flags} {parsed_args.ADDITIONAL_SED_FLAGS}"
 
+    sed_cmd = sed_flags.replace("{QUERY}", sed_query)
+    sed_cmd = sed_cmd.replace("{Q}", sed_query) # short-form
+
+    is_cmd_good = perform_dry_run(grep_flags, sed_cmd, parsed_args.QUERY)
+    if not is_cmd_good:
+        return
+
     full_cmd = INTERACTIVE_CMD
     if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD
 
     full_cmd = full_cmd.replace("{GREP_FLAGS}", grep_flags)
-    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_flags)
-    full_cmd = full_cmd.replace("{QUERY}"     , query)
-    full_cmd = full_cmd.replace("{Q}"         , query) # short-form
+    full_cmd = full_cmd.replace("{SED_CMD}"   , sed_cmd)
+    full_cmd = full_cmd.replace("{QUERY}"     , parsed_args.QUERY)
+    full_cmd = full_cmd.replace("{Q}"         , parsed_args.QUERY) # short-form
     try:
         subprocess.check_call(full_cmd, shell=True, stdout=sys.stdout, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
@@ -165,15 +192,15 @@ def group_args(args: List[str]):
 
 if __name__ == "__main__":
     cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
-    cli.add_argument("-g", "--grep", type=str, dest="GREP_FLAGS", default=GREP_DEFAULTS, help=GREP_DEFAULTS, required=False)
-    cli.add_argument("-g+", "--grep+", type=str, dest="ADDITIONAL_GREP_FLAGS", required=False)
+    cli.add_argument("-g", type=str, dest="GREP_FLAGS", default=GREP_DEFAULTS, help=GREP_DEFAULTS, required=False)
+    cli.add_argument("-g+", type=str, dest="ADDITIONAL_GREP_FLAGS", required=False)
 
-    cli.add_argument("-s", "--sed", type=str, dest="SED_FLAGS", default=SED_DEFAULTS, help=SED_DEFAULTS, required=False)
-    cli.add_argument("-s+", "--sed+", type=str, dest="ADDITIONAL_SED_FLAGS", required=False)
+    cli.add_argument("-s", type=str, dest="SED_FLAGS", default=SED_DEFAULTS, help=SED_DEFAULTS, required=False)
+    cli.add_argument("-s+", type=str, dest="ADDITIONAL_SED_FLAGS", required=False)
 
     cli.add_argument("-ni", action="store_true", dest="no_interactive", help="no interaction")
-    cli.add_argument("-w", action="store_true", dest="match_whole_word_only", help="don't restrict match to whole words")
-    cli.add_argument("--gist", "--man", action="store_true", dest="show_gist", help="show some gist", required=False)
+    cli.add_argument("-w", action="store_true", dest="match_whole_word_only", help="restrict match to whole words")
+    cli.add_argument("--gist", action="store_true", dest="show_gist", help="show some gist", required=False)
 
     cli.add_argument("QUERY", type=str, nargs="?", default="")
 
