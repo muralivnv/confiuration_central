@@ -2,13 +2,14 @@
 
 # imports
 import subprocess
-from argparse import ArgumentParser, RawTextHelpFormatter
+from argparse import ArgumentParser
 import sys
 import os
 from typing import List
 
 ##### HELPFUL GIST
 GIST = """
+ANSI COLOR CODES: https://i.stack.imgur.com/KTSQa.png
 GREP: https://www.man7.org/linux/man-pages/man1/grep.1.html
     -n               : print line numbers
     -H               : print file name
@@ -66,14 +67,17 @@ Combining Multiple Files Using SED:
 """
 
 # constants
-INTERACTIVE_CMD = """fzf --sort --color hl:221,hl+:74 --scrollbar=▌▐ --reverse --preview='sed {SED_CMD} {} > {}.SAR_OUT && diff -u --color=always {} {}.SAR_OUT | tail -n +3' --preview-window='up,70%:wrap' --ansi --bind='enter:execute(mv {}.SAR_OUT {})+refresh-preview,shift-tab:up,tab:down' --cycle"""
+INTERACTIVE_CMD = """fzf --sort --color hl:bright-yellow,hl+:bright-red --scrollbar=▌▐ --reverse --preview='sed {SED_CMD} {} > {}.SAR_OUT && diff -u --color=always --palette=":de=1;31:ad=1;32" {} {}.SAR_OUT | tail -n +3' --preview-window='up,70%:wrap' --ansi --bind='enter:execute(mv {}.SAR_OUT {})+refresh-preview,shift-tab:up,tab:down' --cycle"""
 NONINTERACTIVE_CMD = """xargs -I {} sh -c 'sed -i {SED_CMD} {}' """
 FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
-GREP_DEFAULTS          = ["-l", "-r", "--exclude-dir=\.*", "--exclude-dir=*build*", "--exclude=*\.SAR_OUT"]
+GREP_DEFAULTS          = ["-l", "-m1", "-r", "--exclude-dir=\.*", "--exclude-dir=*build*", "--exclude=*\.SAR_OUT"]
 
 #####
-def wrap_in_word_boundary(text: str)->str:
-    return "\<(" + text + ")\>"
+def wrap_in_word_boundary(text: str, use_extended_regexp: bool)->str:
+    if use_extended_regexp:
+        return "\<(" + text + ")\>"
+    else:
+        return "\<" + text + "\>"
 
 def prepare_grep_cmd(grep_flags: List[str], query: str) -> List[str]:
     new_grep_flags = []
@@ -92,13 +96,18 @@ def trigger(parsed_args) -> None:
         grep_flags.extend(parsed_args.ADDITIONAL_GREP_FLAGS)
     if parsed_args.match_whole_word_only:
         grep_flags.append("-w")
+    if parsed_args.use_extended_regexp:
+        grep_flags.append("-E")
     grep_cmd = prepare_grep_cmd(grep_flags, parsed_args.QUERY)
 
    # assemble sed
     sed_query = parsed_args.QUERY
+    sed_cmd = parsed_args.SED_CMD
     if parsed_args.match_whole_word_only:
-        sed_query = wrap_in_word_boundary(sed_query)
-    sed_cmd = parsed_args.SED_CMD.replace("{QUERY}", sed_query)
+        sed_query = wrap_in_word_boundary(sed_query, parsed_args.use_extended_regexp)
+    if parsed_args.use_extended_regexp:
+        sed_cmd = "-E " + sed_cmd
+    sed_cmd = sed_cmd.replace("{QUERY}", sed_query)
     sed_cmd = sed_cmd.replace("{Q}", sed_query) # short-form
 
     full_cmd = INTERACTIVE_CMD
@@ -141,13 +150,14 @@ def trigger(parsed_args) -> None:
                 os.system(f"rm {file}.SAR_OUT")
 
 if __name__ == "__main__":
-    cli = ArgumentParser(formatter_class=RawTextHelpFormatter)
+    cli = ArgumentParser()
     cli.add_argument("-g", type=str, dest="GREP_FLAGS", nargs="*", default=GREP_DEFAULTS, help=' '.join(GREP_DEFAULTS), required=False)
     cli.add_argument("-g+", type=str, dest="ADDITIONAL_GREP_FLAGS", nargs="*", default=[], required=False)
     cli.add_argument("-s", type=str, dest="SED_CMD", default="", help="sed command", required=not "--gist" in sys.argv)
 
     cli.add_argument("-ni", action="store_true", dest="no_interactive", help="no interaction")
     cli.add_argument("-w", action="store_true", dest="match_whole_word_only", help="restrict match to whole words")
+    cli.add_argument("-E", action="store_true", dest="use_extended_regexp", help="turn on extended regexp mode")
 
     cli.add_argument("--gist", action="store_true", dest="show_gist", help="show some gist", required=False)
 
