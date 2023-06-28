@@ -2,14 +2,13 @@
 
 # imports
 import subprocess
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 import sys
 import os
 from typing import List
 
 ##### HELPFUL GIST
 GIST = """
-ANSI COLOR CODES: https://i.stack.imgur.com/KTSQa.png
 GREP: https://www.man7.org/linux/man-pages/man1/grep.1.html
     -n               : print line numbers
     -H               : print file name
@@ -79,18 +78,7 @@ def wrap_in_word_boundary(text: str, use_extended_regexp: bool)->str:
     else:
         return "\<" + text + "\>"
 
-def prepare_grep_cmd(grep_flags: List[str], query: str) -> List[str]:
-    new_grep_flags = []
-    for i, flag in enumerate(grep_flags):
-        stripped_flag = flag.strip()
-        if any(stripped_flag):
-            splits = stripped_flag.split(' ')
-            new_grep_flags.extend(splits)
-    grep_cmd = ["grep"] + new_grep_flags + [query]
-    return grep_cmd
-
-def trigger(parsed_args) -> None:
-    # assemble grep
+def prepare_grep_cmd(parsed_args: Namespace) -> List[str]:
     grep_flags = parsed_args.GREP_FLAGS
     if any(parsed_args.ADDITIONAL_GREP_FLAGS):
         grep_flags.extend(parsed_args.ADDITIONAL_GREP_FLAGS)
@@ -98,29 +86,52 @@ def trigger(parsed_args) -> None:
         grep_flags.append("-w")
     if parsed_args.use_extended_regexp:
         grep_flags.append("-E")
-    grep_cmd = prepare_grep_cmd(grep_flags, parsed_args.QUERY)
 
-   # assemble sed
+    # remove extra spaces around each grep flag if any
+    new_grep_flags = []
+    for i, flag in enumerate(grep_flags):
+        stripped_flag = flag.strip()
+        if any(stripped_flag):
+            splits = stripped_flag.split(' ')
+            new_grep_flags.extend(splits)
+    grep_cmd = ["grep"] + new_grep_flags + [parsed_args.QUERY]
+    return grep_cmd
+
+def prepare_sed_cmd(parsed_args: Namespace) -> str:
     sed_query = parsed_args.QUERY
     sed_cmd = parsed_args.SED_CMD
+
     if parsed_args.match_whole_word_only:
         sed_query = wrap_in_word_boundary(sed_query, parsed_args.use_extended_regexp)
     if parsed_args.use_extended_regexp:
         sed_cmd = "-E " + sed_cmd
+
     sed_cmd = sed_cmd.replace("{QUERY}", sed_query)
     sed_cmd = sed_cmd.replace("{Q}", sed_query) # short-form
+    return sed_cmd
+
+def delete_temporary_files(files: List[str]):
+    if any(files):
+        for file in files:
+            if os.path.exists(f"{file}.SAR_OUT"):
+                os.system(f"rm {file}.SAR_OUT")
+
+def trigger(parsed_args: Namespace) -> None:
+    grep_cmd = prepare_grep_cmd(parsed_args)
+    sed_cmd  = prepare_sed_cmd(parsed_args)
 
     full_cmd = INTERACTIVE_CMD
     if parsed_args.no_interactive:
         full_cmd = NONINTERACTIVE_CMD
 
     full_cmd = full_cmd.replace("{SED_CMD}", sed_cmd)
+    
     query_files: List[str] = []
     try:
         # get list of files that query exists using GREP
         foi = subprocess.Popen(grep_cmd,
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-        query_files = foi.stdout.read()
+        grep_output: str = foi.stdout.read()
         res = foi.communicate()
         if (foi.returncode != 0):
             error = res[1].strip()
@@ -132,22 +143,18 @@ def trigger(parsed_args) -> None:
 
         # pass it through next command
         subprocess.run(full_cmd,
-                     shell=True, input=query_files, universal_newlines=True)
+                       shell=True, input=grep_output, universal_newlines=True)
 
         # store query files for post-processing
-        query_files = query_files.split('\n')
+        query_files = grep_output.split('\n')
 
     except subprocess.CalledProcessError as e:
         if not (e.returncode in FZF_ERR_CODE_TO_IGNORE):
             print(e)
     except Exception as e:
         print(e)
-
-    # delete temporary files
-    if any(query_files):
-        for file in query_files:
-            if os.path.exists(f"{file}.SAR_OUT"):
-                os.system(f"rm {file}.SAR_OUT")
+    finally:
+        delete_temporary_files(query_files)
 
 if __name__ == "__main__":
     cli = ArgumentParser()
