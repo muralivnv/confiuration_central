@@ -154,7 +154,8 @@ def trigger(parsed_args: Namespace) -> None:
     except Exception as e:
         print(e)
     finally:
-        delete_temporary_files(query_files)
+        if not parsed_args.no_interactive:
+            delete_temporary_files(query_files)
 
 if __name__ == "__main__":
     cli = ArgumentParser()
