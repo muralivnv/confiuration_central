@@ -28,16 +28,17 @@
 "punctuation"               = { fg = "white"                                   }
 "punctuation.special"       = { fg = "white"                                   }
 
-"markup.heading"            = { fg = "red"                                     }
+"markup.heading"            = { fg = "red"   , modifiers = ["bold"] }
 "markup.raw.inline"         = { fg = "green"                                   }
 "markup.raw.block"          = { fg = "white"                                   }
 "markup.bold"               = { fg = "gold", modifiers = ["bold"]              }
 "markup.italic"             = { fg = "purple", modifiers = ["italic"]          }
+"markup.strikethrough"      = { fg = "white", modifiers = ["crossed_out"] }
 "markup.list"               = { fg = "moss_green"                              }
-"markup.quote"              = { fg = "green"                                   }
-"markup.link.url"           = { fg = "brown", modifiers = ["underlined"]       }
-"markup.link.text"          = { fg = "white"                                   }
-"markup.link.label"         = { fg = "white"                                   }
+"markup.quote"              = { fg = "cyan"                                   }
+"markup.link.url"           = { fg = "cyan", modifiers = ["underlined"]       }
+"markup.link.text"          = { fg = "gold"                                   }
+"markup.link.label"         = { fg = "gold"                                   }
 
 "diff.plus"                 = "green"
 "diff.delta"                = "gold"

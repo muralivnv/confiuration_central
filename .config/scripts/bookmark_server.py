@@ -43,7 +43,7 @@ if __name__ == '__main__':
         exit(1)
 
     # Create an object of the above class
-    bookmark_server = socketserver.TCPServer(("localhost", parsed_args.PORT),
+    bookmark_server = socketserver.TCPServer(("127.0.0.1", parsed_args.PORT),
                                              MyHttpRequestHandler,
                                              bind_and_activate=False)
     bookmark_server.allow_reuse_address = True
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     # Start the server
     try:
-        print(f"running server at -- http://localhost:{parsed_args.PORT}")
+        print(f"running server at -- http://127.0.0.1:{parsed_args.PORT}")
         bookmark_server.serve_forever()
     except KeyboardInterrupt:
         pass

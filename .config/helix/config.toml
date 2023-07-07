@@ -119,6 +119,7 @@ L = "swap_view_right"
 I = "swap_view_up"
 K = "swap_view_down"
 q = [":bc", "wclose"]
+t = "transpose_view"
 
 [keys.insert]
 "A-e"     = "normal_mode"

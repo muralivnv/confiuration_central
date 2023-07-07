@@ -49,12 +49,10 @@
   // Python
   "python.pythonPath": "C:\\Anaconda3\\python.exe",
   "python.languageServer": "Jedi",
-  "jupyter.sendSelectionToInteractiveWindow": false,
   "jupyter.askForKernelRestart": false,
   "jupyter.runStartupCommands": [
       "%config IPCompleter.use_jedi = False"
   ],
-  "jupyter.interactiveWindowMode": "perFile",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
@@ -717,5 +715,10 @@
     "c",
     "e"
   ],
-  "editor.inlayHints.enabled": false
+  "editor.inlayHints.enabled": false,
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "jupyter.interactiveWindow.textEditor.executeSelection": false,
+  "markdown.copyFiles.destination": {
+    "**/*": "${documentDirName}/attachments/"
+  }
 }
