@@ -9,7 +9,7 @@ from time import sleep
 
 # globals
 FZF_ERR_CODE_TO_IGNORE = [0, 1, 130]
-FZF_CMD = "fzf -m --reverse --color hl:bright-yellow,hl+:bright-red --scrollbar=▌▐"
+FZF_CMD = "fzf -m --reverse --color hl:bright-yellow,hl+:bright-red --scrollbar=▌▐ --border=rounded --margin 2%"
 
 # helpers
 def parse_link(selection: str) -> List[str]:
@@ -31,7 +31,7 @@ def edit_file(editor: str, bm_filepath: str):
 def search(bm_filepath: str):
     try:
 
-        selection = subprocess.check_output(f"sed '/^$/d' {bm_filepath} | {FZF_CMD}", shell=True)
+        selection = subprocess.check_output(f"sed -e '/^$/d' -e '/^\s*#/d' {bm_filepath} | {FZF_CMD}", shell=True)
         selection = selection.decode("utf8")
         links = parse_link(selection)
         if (not links is None) and (any(links)):
