@@ -30,8 +30,7 @@ def edit_file(editor: str, bm_filepath: str):
 
 def search(bm_filepath: str):
     try:
-
-        selection = subprocess.check_output(f"sed -e '/^$/d' -e '/^\s*#/d' {bm_filepath} | {FZF_CMD}", shell=True)
+        selection = subprocess.check_output(f"sed -e '/^$/d' -e '/^\s*#[^()]*$/d' {bm_filepath} | {FZF_CMD}", shell=True)
         selection = selection.decode("utf8")
         links = parse_link(selection)
         if (not links is None) and (any(links)):
