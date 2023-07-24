@@ -121,6 +121,13 @@ K = "swap_view_down"
 q = [":bc", "wclose"]
 t = "transpose_view"
 
+[keys.normal.M]
+i = [":sh echo '%val{filename}' | python3 /home/murali/local_disk/app_dev/dotfiles/.config/scripts/markdown_image_insert.py"]
+o = ["yank_main_selection_to_clipboard", ":w", ":sh echo '%val{filename}' | python3 /home/murali/local_disk/app_dev/dotfiles/.config/scripts/markdown_file_open.py"]
+
+t = ["extend_line", "yank_main_selection_to_clipboard", "delete_selection", ":w", ":sh echo '%val{filename}' | python3 /home/murali/local_disk/app_dev/dotfiles/.config/scripts/markdown_insert_table.py"]
+T = ["yank_main_selection_to_clipboard", "delete_selection", ":w", ":sh echo '%val{filename}' | python3 /home/murali/local_disk/app_dev/dotfiles/.config/scripts/markdown_format_table.py"]
+
 [keys.insert]
 "A-e"     = "normal_mode"
 j         = { k = ["normal_mode"] }

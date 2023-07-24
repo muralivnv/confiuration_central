@@ -36,7 +36,7 @@ def search(bm_filepath: str):
         if (not links is None) and (any(links)):
             for link in links:
                 os.system(f"xdg-open {link}")
-                sleep(0.1)
+                sleep(0.3)
 
     except subprocess.CalledProcessError as e:
         if not (e.returncode in FZF_ERR_CODE_TO_IGNORE):
