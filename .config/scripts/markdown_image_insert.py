@@ -3,12 +3,16 @@
 import sys
 import os
 from datetime import datetime
-from subprocess import run, DEVNULL
 
+# Config
 ATTACHMENT_DIR = "attachments"
 
+# main
 filepath = sys.stdin.read()
 filepath = filepath.strip()
+if not any(filepath):
+    print("[ERROR] filepath is empty")
+    exit(1)
 dir, _ = os.path.split(filepath)
 
 # create png file-path
@@ -24,8 +28,9 @@ try:
     retcode = os.system(f"xclip -selection clipboard -t image/png -o > {png_filepath}")
     if (retcode == 0):
         is_png_creation_success = True
-except:
-    pass
+except Exception as e:
+    print(e)
+    exit(1)
 
 if is_png_creation_success:
     # add this info into file
