@@ -35,4 +35,4 @@ except Exception as e:
 if is_png_creation_success:
     # add this info into file
     text = f"""![]({os.path.join(ATTACHMENT_DIR, png_filename)})"""
-    os.system(f"""echo "{text}" >> {filepath}""")
+    print(text)

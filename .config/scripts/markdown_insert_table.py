@@ -81,4 +81,4 @@ except Exception as e:
     exit(1)
 
 # add this info into file
-os.system(f"""echo "{table}" >> {filepath}""")
+print(table)
