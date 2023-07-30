@@ -87,8 +87,7 @@ C-x       = ["yank_main_selection_to_clipboard", "delete_selection"]
 "C-p"     = "search_prev"
 "C-r"     = [":reload-all"]
 "A-q"     = "toggle_comments"
-"a"       = "shell_pipe"
-"S-a"     = "shell_pipe_to"
+"S-a"     = "no_op"
 x         = "extend_line"
 "V"       = ["goto_first_nonwhitespace", "extend_to_line_end"]
 "b"       = "buffer_picker"
@@ -121,12 +120,13 @@ K = "swap_view_down"
 q = [":bc", "wclose"]
 t = "transpose_view"
 
-[keys.normal.M]
-i = [":append-output echo '%val{filename}' | python3 /home/murali/.config/scripts/markdown_image_insert.py"]
-o = [ "yank_main_selection_to_clipboard", ":sh echo '%val{filename}' | python3 /home/murali/.config/scripts/markdown_file_open.py"]
+[keys.normal.a]
+i = [":append-output echo '%val{filename}' | python3 ~/.config/scripts/markdown_image_insert.py"]
+o = [ "yank_main_selection_to_clipboard", ":sh echo '%val{filename}' | python3 ~/.config/scripts/markdown_file_open.py"]
+d = [ "yank_main_selection_to_clipboard", "delete_selection", ":w", ":sh echo '%val{filename}' | python3 ~/.config/scripts/markdown_image_delete.py"]
 
-t = ["extend_line", "yank_main_selection_to_clipboard", "delete_selection", ":w", ":append-output echo '%val{filename}' | python3 /home/murali/.config/scripts/markdown_insert_table.py"]
-T = ["yank_main_selection_to_clipboard", "delete_selection", ":w", ":sh echo '%val{filename}' | python3 /home/murali/.config/scripts/markdown_format_table.py"]
+t = ["yank_main_selection_to_clipboard", "delete_selection", ":w", ":append-output echo '%val{filename}' | python3 ~/.config/scripts/markdown_insert_table.py"]
+f = ["yank_main_selection_to_clipboard", "delete_selection", ":w", ":append-output echo '%val{filename}' | python3 ~/.config/scripts/markdown_format_table.py"]
 
 [keys.insert]
 "A-e"     = "normal_mode"
