@@ -196,12 +196,16 @@ def revert_last_change():
     dest = os.getcwd()
     src = os.path.join(dest, BACKUP_DIR)
 
+    if not os.path.exists(src):
+        print("Backup do not exists, changes cannot be undone")
+
     for root, _, files in os.walk(src):
         for file in files:
             source_file = os.path.join(root, file)
             dest_file = os.path.join(dest, os.path.relpath(source_file, src))
             shutil.move(source_file, dest_file)
             print("\n--- CHANGES UNDONE: ", dest_file)
+    os.system(f"rm -rf {src}")
 
 if __name__ == "__main__":
     cli = ArgumentParser()
