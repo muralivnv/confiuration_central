@@ -9,7 +9,6 @@
   "window.titleSeparator": " ~ ",
   "window.title": "${dirty}${separator}${rootName}",
   "workbench.sideBar.location": "right",
-  "workbench.editor.untitled.hint": "hidden",
   "editor.guides.bracketPairs": false,
   "editor.guides.highlightActiveIndentation": true,
   // "files.trimTrailingWhitespace": true,
@@ -104,9 +103,6 @@
     "**/*.ilk": true,
     "**/*.dll": true
   },
-  
-  "workbench.activityBar.visible": false,
-  "diffEditor.renderSideBySide": false,
   "workbench.layoutControl.enabled": false,
 
   // Extensions ------------
@@ -403,11 +399,13 @@
         ]
       }
   },
-  "editor.fontFamily": "JetBrains Mono, 'Courier New', monospace",
-  "editor.fontSize": 13.5,
-  "editor.lineHeight": 22,
+  "editor.fontFamily": "Iosevka Custom, 'Courier New', monospace",
+  // "editor.fontSize": 13.5,
+  "editor.fontSize": 14.0,
+  // "editor.lineHeight": 22,
   "editor.fontLigatures": false,
-  "debug.console.fontSize": 13.5,
+  // "debug.console.fontSize": 13.5,
+  "debug.console.fontSize": 14.0,
   "workbench.startupEditor": "none",
 
   // codereaper extension settings
@@ -720,5 +718,7 @@
   "jupyter.interactiveWindow.textEditor.executeSelection": false,
   "markdown.copyFiles.destination": {
     "**/*": "${documentDirName}/attachments/"
-  }
+  },
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.activityBar.location": "hidden"
 }
